@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de conversas 1 a 1 — Terapeutas · 1º semestre 2026 · Allos</title>
+<!-- As edições salvas viajam junto com o arquivo neste bloco. Não editar à mão. -->
+<script id="edicoes" type="application/json">null</script>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:      #f9f9f7;
+    --surface:    #fcfcfb;
+    --ink:        #0b0b0b;
+    --ink-2:      #52514e;
+    --muted:      #898781;
+    --grid:       #e1e0d9;
+    --axis:       #c3c2b7;
+    --border:     rgba(11,11,11,0.10);
+    --series-1:   #2a78d6;
+    --series-1-w: rgba(42,120,214,0.10);
+    --good:       #0ca30c;
+    --good-ink:   #006300;
+    --warning:    #fab219;
+    --serious:    #ec835a;
+    --critical:   #d03b3b;
+    --privado-bg: #fdf6e6;
+    --privado-br: #e8d9a8;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --plane:      #0d0d0d;
+      --surface:    #1a1a19;
+      --ink:        #ffffff;
+      --ink-2:      #c3c2b7;
+      --muted:      #898781;
+      --grid:       #2c2c2a;
+      --axis:       #383835;
+      --border:     rgba(255,255,255,0.10);
+      --series-1:   #3987e5;
+      --series-1-w: rgba(57,135,229,0.16);
+      --good-ink:   #0ca30c;
+      --privado-bg: #262009;
+      --privado-br: #4d431c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:      #0d0d0d;
+    --surface:    #1a1a19;
+    --ink:        #ffffff;
+    --ink-2:      #c3c2b7;
+    --muted:      #898781;
+    --grid:       #2c2c2a;
+    --axis:       #383835;
+    --border:     rgba(255,255,255,0.10);
+    --series-1:   #3987e5;
+    --series-1-w: rgba(57,135,229,0.16);
+    --good-ink:   #0ca30c;
+    --privado-bg: #262009;
+    --privado-br: #4d431c;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0; background: var(--plane); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px 96px; }
+
+  /* ---------------------------------------------------------- barra fixa */
+  .barra {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .barra-in {
+    max-width: 1060px; margin: 0 auto;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .barra .marca { font-weight: 650; font-size: 14px; letter-spacing: .01em; }
+  .barra .marca span { color: var(--muted); font-weight: 450; }
+  .barra .espaco { flex: 1 1 auto; }
+  .btn {
+    font: inherit; font-size: 13.5px; line-height: 1;
+    padding: 9px 13px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: transparent; color: var(--ink-2);
+  }
+  .btn:hover { background: var(--grid); color: var(--ink); }
+  .btn[aria-pressed="true"] {
+    background: var(--series-1); border-color: var(--series-1); color: #fff; font-weight: 600;
+  }
+
+  /* ---------------------------------------------------------- tipografia */
+  h1 { font-size: 30px; line-height: 1.2; margin: 40px 0 6px; letter-spacing: -.015em; }
+  h2 { font-size: 21px; margin: 0 0 2px; letter-spacing: -.01em; }
+  h3 { font-size: 15px; margin: 0 0 10px; letter-spacing: .02em; text-transform: uppercase;
+       color: var(--muted); font-weight: 650; }
+  p { margin: 0 0 12px; }
+  .sub { color: var(--ink-2); font-size: 16.5px; margin: 0 0 4px; }
+  .mini { font-size: 13.5px; color: var(--muted); }
+  a { color: var(--series-1); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px 24px; margin: 18px 0;
+  }
+  .card.terapeuta { padding-top: 20px; }
+
+  /* ---------------------------------------------------------- cabeçalho */
+  .capa { padding-top: 8px; }
+  .ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px 26px; }
+  .ficha div { font-size: 14px; }
+  .ficha dt { color: var(--muted); font-size: 12.5px; text-transform: uppercase;
+              letter-spacing: .04em; font-weight: 600; }
+  .ficha dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; }
+
+  /* ---------------------------------------------------------- régua */
+  .regua { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+           background: var(--border); border: 1px solid var(--border); border-radius: 10px;
+           overflow: hidden; }
+  .regua > div { background: var(--surface); padding: 13px 15px; }
+  .regua .v { font-size: 22px; font-weight: 660; letter-spacing: -.02em; display: block; }
+  .regua .r { font-size: 12.5px; color: var(--muted); display: block; line-height: 1.4; margin-top: 2px; }
+  @media (max-width: 760px) { .regua { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---------------------------------------------------------- navegação */
+  .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(224px, 1fr)); gap: 8px; }
+  .nav-item {
+    display: block; text-decoration: none; color: var(--ink);
+    border: 1px solid var(--border); border-radius: 9px; padding: 9px 11px; font-size: 14px;
+  }
+  .nav-item:hover { background: var(--series-1-w); border-color: var(--series-1); }
+  .nav-item .l1 { display: flex; align-items: baseline; gap: 8px; }
+  .nav-item .nm { font-weight: 570; flex: 1 1 auto; white-space: nowrap; overflow: hidden;
+                  text-overflow: ellipsis; }
+  .nav-item .nb { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums;
+                  flex: none; }
+  .nav-item .selo { margin-top: 5px; }
+
+  /* ---------------------------------------------------------- selo status */
+  .selo {
+    display: inline-flex; align-items: center; gap: 5px; border-radius: 999px;
+    padding: 3px 10px 3px 8px; font-size: 12.5px; font-weight: 620; line-height: 1.5;
+    border: 1px solid var(--border); white-space: nowrap;
+  }
+  .selo .pt { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .selo-reconhecer .pt { background: var(--good); }
+  .selo-acompanhar .pt { background: var(--warning); }
+  .selo-prioridade .pt { background: var(--critical); }
+  .selo-neutro     .pt { background: var(--muted); }
+
+  /* ---------------------------------------------------------- terapeuta */
+  .t-topo { display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap;
+            border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px; }
+  .t-topo .t-id { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px;
+                  font-weight: 600; padding-top: 4px; }
+  .t-meta { color: var(--muted); font-size: 13.5px; margin-top: 1px; }
+  .t-resumo { font-size: 17px; line-height: 1.55; margin: 0 0 18px; color: var(--ink); }
+
+  /* KPIs */
+  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+          background: var(--border); border: 1px solid var(--border); border-radius: 10px;
+          overflow: hidden; margin-bottom: 20px; }
+  @media (max-width: 900px) { .kpis { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi { background: var(--surface); padding: 12px 14px 13px; }
+  .kpi .rot { font-size: 12px; color: var(--muted); text-transform: uppercase;
+              letter-spacing: .035em; font-weight: 620; line-height: 1.35; }
+  .kpi .val { font-size: 25px; font-weight: 660; letter-spacing: -.025em; margin-top: 3px;
+              line-height: 1.15; }
+  .kpi .val .un { font-size: 14px; font-weight: 550; color: var(--ink-2); letter-spacing: 0; }
+  .kpi .ref { font-size: 12.5px; color: var(--muted); line-height: 1.45; margin-top: 3px;
+              font-variant-numeric: tabular-nums; }
+  .kpi .cmp { font-size: 12.5px; font-weight: 620; margin-top: 2px; display: block; }
+  .cmp-bom  { color: var(--good-ink); }
+  .cmp-ruim { color: var(--critical); }
+  .cmp-igual{ color: var(--muted); }
+
+  /* gráfico */
+  .gr { margin: 4px 0 20px; }
+  .gr-top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .gr-tit { font-size: 14.5px; font-weight: 620; }
+  .legenda { display: flex; gap: 14px; font-size: 12.5px; color: var(--ink-2); }
+  .legenda i { display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+               margin-right: 5px; vertical-align: -1px; }
+  .barras { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; align-items: end;
+            height: 152px; border-bottom: 1px solid var(--axis); margin-top: 12px; }
+  .col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%;
+         gap: 2px; cursor: default; position: relative; }
+  .col .seg-falta { background: var(--grid); border-radius: 4px 4px 0 0; min-height: 0; }
+  .col .seg-real  { background: var(--series-1); border-radius: 4px 4px 0 0; min-height: 2px; }
+  .col.vazio .seg-real { background: transparent; }
+  .col .num { position: absolute; top: -18px; left: 0; right: 0; text-align: center;
+              font-size: 12px; font-weight: 620; font-variant-numeric: tabular-nums;
+              color: var(--ink-2); }
+  .col:hover .seg-real { outline: 2px solid var(--surface); outline-offset: -2px; }
+  .eixo { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 6px; }
+  .eixo span { text-align: center; font-size: 12px; color: var(--muted);
+               font-variant-numeric: tabular-nums; }
+  .gr details { margin-top: 12px; }
+  .gr summary { font-size: 13px; color: var(--ink-2); cursor: pointer; }
+
+  /* tabelas */
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin-top: 10px; }
+  th, td { text-align: right; padding: 6px 9px; border-bottom: 1px solid var(--border);
+           font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; font-variant-numeric: normal; }
+  th { color: var(--muted); font-weight: 620; font-size: 12px; text-transform: uppercase;
+       letter-spacing: .03em; }
+
+  /* blocos de texto */
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 6px; }
+  @media (max-width: 720px) { .duas { grid-template-columns: 1fr; } }
+  ul.lista { list-style: none; padding: 0; margin: 0; }
+  ul.lista li { position: relative; padding-left: 22px; margin-bottom: 9px; font-size: 15px;
+                line-height: 1.5; }
+  ul.lista li::before { position: absolute; left: 0; top: 0; font-size: 13px; font-weight: 700; }
+  ul.forte li::before { content: "✓"; color: var(--good-ink); }
+  ul.aten li::before  { content: "!"; color: var(--warning); left: 4px; }
+  ul.aten li.grave::before { content: "!"; color: var(--critical); }
+  ul.aten li.info::before  { content: "i"; color: var(--muted); font-style: italic; }
+  ol.perg { padding-left: 20px; margin: 0; }
+  ol.perg li { margin-bottom: 8px; font-size: 15px; line-height: 1.5; }
+  .bloco { margin-bottom: 20px; }
+
+  /* privado */
+  .privado {
+    background: var(--privado-bg); border: 1px solid var(--privado-br);
+    border-radius: 10px; padding: 15px 17px; margin-top: 4px;
+  }
+  .privado h3 { color: var(--ink-2); margin-bottom: 8px; }
+  .privado .aviso { font-size: 12.5px; color: var(--ink-2); margin-bottom: 10px; }
+  .privado ul.lista li { font-size: 14.5px; }
+  .privado ul.lista li::before { content: "•"; color: var(--ink-2); }
+  .privado blockquote { margin: 8px 0 0; padding: 9px 12px; border-left: 3px solid var(--privado-br);
+    font-size: 13.5px; color: var(--ink-2); white-space: pre-line; }
+  body.apresentacao .privado { display: none; }
+  body.apresentacao .so-privado { display: none; }
+
+  /* anotações da conversa (sempre editáveis) */
+  .anota { margin-top: 18px; }
+  .combinados {
+    border: 1px dashed var(--axis); border-radius: 9px; padding: 11px 13px; min-height: 84px;
+    font-size: 15px; line-height: 1.7; outline: none;
+  }
+  .combinados:focus { border-style: solid; border-color: var(--series-1);
+                      box-shadow: 0 0 0 3px var(--series-1-w); }
+  .combinados:empty::before { content: attr(data-vazio); color: var(--muted); }
+  .revisao { display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+             margin-top: 10px; font-size: 13.5px; color: var(--ink-2); }
+  .revisao label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .revisao input[type=text] {
+    font: inherit; font-size: 13.5px; padding: 5px 9px; border-radius: 7px;
+    border: 1px solid var(--border); background: transparent; color: var(--ink); min-width: 0;
+  }
+  .revisao input[type=text]:focus { outline: none; border-color: var(--series-1);
+                                    box-shadow: 0 0 0 3px var(--series-1-w); }
+  .revisao .sup { flex: 1 1 190px; } .revisao .dt { width: 116px; flex: none; }
+  .selo-revisado { display: none; }
+  .card.terapeuta.revisado .selo-revisado {
+    display: inline-flex; background: var(--series-1-w); border-color: var(--series-1); }
+  .card.terapeuta.revisado .selo-revisado .pt { background: var(--good); }
+
+  /* ---------------------------------------------------------- modo edição */
+  [data-edit], .txt[contenteditable] { outline: none; }
+  body.editando [data-edit], body.editando .txt[contenteditable] {
+    background: var(--series-1-w); border-radius: 5px;
+    box-shadow: 0 0 0 2px var(--series-1-w); cursor: text;
+  }
+  body.editando [data-edit]:focus, body.editando .txt[contenteditable]:focus {
+    background: transparent; box-shadow: 0 0 0 2px var(--series-1);
+  }
+  .ed { display: none; }
+  body.editando .ed { display: inline-flex; }
+  .btn-mini {
+    font: inherit; font-size: 12px; line-height: 1; padding: 4px 8px; border-radius: 6px;
+    cursor: pointer; border: 1px solid var(--border); background: var(--surface);
+    color: var(--ink-2); align-items: center; gap: 4px; vertical-align: middle;
+  }
+  .btn-mini:hover { border-color: var(--series-1); color: var(--series-1); }
+  .btn-mini.rm { margin-left: 6px; }
+  .btn-mini.niv { margin-right: 6px; min-width: 62px; justify-content: center; }
+  .add-linha { margin-top: 2px; }
+  body.editando ul.aten li::before { content: none; }
+  body.editando ul.aten li { padding-left: 0; }
+  .barra-edicao {
+    display: none; gap: 10px; align-items: center; flex-wrap: wrap;
+    background: var(--series-1-w); border: 1px solid var(--series-1);
+    border-radius: 10px; padding: 11px 14px; margin: 16px 0; font-size: 13.5px;
+  }
+  body.editando .barra-edicao { display: flex; }
+  .barra-edicao .dica { flex: 1 1 300px; color: var(--ink-2); }
+  #status { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .fonte-edicoes {
+    background: var(--privado-bg); border: 1px solid var(--privado-br); border-radius: 10px;
+    padding: 11px 14px; margin: 16px 0; font-size: 13.5px; display: none;
+    align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .menu { position: relative; display: inline-block; }
+  .menu-itens {
+    display: none; position: absolute; right: 0; top: calc(100% + 6px); z-index: 60;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 6px; min-width: 254px; box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  }
+  .menu.aberto .menu-itens { display: block; }
+  .menu-itens button {
+    display: block; width: 100%; text-align: left; font: inherit; font-size: 13.5px;
+    padding: 9px 11px; border: 0; border-radius: 7px; background: transparent;
+    color: var(--ink); cursor: pointer;
+  }
+  .menu-itens button:hover { background: var(--series-1-w); }
+  .menu-itens hr { border: 0; border-top: 1px solid var(--border); margin: 5px 4px; }
+  .menu-itens .peq { font-size: 12px; color: var(--muted); padding: 4px 11px 8px; }
+
+  /* tooltip */
+  #tip { position: fixed; z-index: 90; pointer-events: none; opacity: 0;
+    background: var(--ink); color: var(--plane); font-size: 12.5px; line-height: 1.45;
+    padding: 7px 10px; border-radius: 7px; transition: opacity .1s; max-width: 220px; }
+
+  .topo-link { font-size: 12.5px; color: var(--muted); text-decoration: none; align-self: center; }
+  .topo-link:hover { color: var(--series-1); }
+
+  @media print {
+    .barra, .topo-link, #tip, .nav-card { display: none !important; }
+    body { background: #fff; font-size: 11.5px; }
+    .privado { display: block !important; }
+    .card { break-inside: avoid; border-color: #ccc; margin: 10px 0; padding: 14px 16px; }
+    .card.terapeuta { break-before: page; }
+    .wrap { padding-bottom: 0; }
+    h1 { margin-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <div class="barra-in">
+    <div class="marca">Conversas 1 a 1 <span>· terapeutas · jan–jun 2026</span></div>
+    <div class="espaco"></div>
+    <span id="status"></span>
+    <button class="btn" id="btn-editar" aria-pressed="false"
+            title="Permite alterar textos, perguntas e observações">Modo edição</button>
+    <button class="btn" id="btn-apres" aria-pressed="false"
+            title="Esconde as suas notas privadas para você poder mostrar a tela na conversa">
+      Modo apresentação</button>
+    <div class="menu" id="menu-arquivo">
+      <button class="btn" id="btn-arquivo">Arquivo ▾</button>
+      <div class="menu-itens">
+        <button data-acao="salvar-html">Salvar cópia com minhas edições (HTML)</button>
+        <div class="peq">Gera um arquivo novo já com tudo que você escreveu — é este que você
+          manda para os supervisores.</div>
+        <hr>
+        <button data-acao="exportar-json">Exportar só as edições (JSON)</button>
+        <button data-acao="importar-json">Importar edições de alguém (JSON)</button>
+        <div class="peq">Para juntar as alterações de um supervisor às suas.</div>
+        <hr>
+        <button data-acao="imprimir">Imprimir / salvar em PDF</button>
+        <button data-acao="tema">Alternar tema claro/escuro</button>
+        <hr>
+        <button data-acao="descartar">Descartar todas as minhas edições…</button>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="file" id="arquivo-json" accept=".json,application/json" hidden>
+
+<div class="wrap">
+
+  <div class="capa">
+    <h1>Guia de conversas 1 a 1</h1>
+    <p class="sub">21 terapeutas ativos com 5 ou mais pacientes ativos · desempenho de
+      <strong>janeiro a junho de 2026</strong></p>
+    <p class="mini">Feito para preparar e conduzir as conversas individuais. Cada terapeuta tem uma
+      seção com os números, o que reconhecer, o que levantar e perguntas prontas.</p>
+  </div>
+
+  <div class="fonte-edicoes" id="fonte-edicoes"></div>
+
+  <div class="barra-edicao">
+    <strong>Modo edição ligado.</strong>
+    <span class="dica">Clique em qualquer texto destacado para reescrever. Use
+      <kbd>Ctrl</kbd>+<kbd>B</kbd> para negrito. Tudo é salvo sozinho neste navegador — para levar
+      as edições a outro computador, use <em>Arquivo → Salvar cópia</em>.</span>
+  </div>
+
+  <div class="card">
+    <h3>Como usar</h3>
+    <div class="duas">
+      <div>
+        <ul class="lista forte">
+          <li><strong>Para se preparar:</strong> leia a seção da pessoa inteira, inclusive o bloco
+            amarelo <em>Só para você</em> — ele tem contexto que não deve aparecer na tela.</li>
+          <li><strong>Na conversa:</strong> clique em <strong>Modo apresentação</strong>. Os blocos
+            amarelos somem e a tela fica pronta para ser mostrada e discutida junto.</li>
+          <li><strong>Para alinhar com os supervisores:</strong> ligue o <strong>Modo edição</strong>,
+            reescreva o que precisar e depois use <strong>Arquivo → Salvar cópia</strong>. O arquivo
+            gerado já abre com as suas alterações em qualquer computador.</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="lista aten">
+          <li class="info">Os números comparam sempre com a <strong>mediana</strong> dos 49
+            terapeutas que atenderam no semestre — não com o "ideal".</li>
+          <li class="info">Nenhum número aqui é avaliação de qualidade clínica. São indicadores de
+            operação: volume, frequência, permanência e registro.</li>
+          <li class="info"><strong>Os números não são editáveis</strong> — eles vêm do Hamilton.
+            Editável é tudo que é texto: leitura, pontos fortes, atenção, perguntas e notas.</li>
+          <li class="info">Os campos <strong>Combinados</strong> e <strong>revisado com</strong>, no
+            fim de cada seção, podem ser preenchidos a qualquer momento, sem ligar o modo edição.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Ficha técnica</h3>
+    <div class="ficha">
+      <div><dt>Janela</dt><dd>01/01 a 30/06/2026</dd></div>
+      <div><dt>Base de comparação</dt><dd>49 terapeutas com atendimento</dd></div>
+      <div><dt>Critério do recorte</dt><dd>ativo com ≥5 pacientes ativos</dd></div>
+      <div><dt>Banco</dt><dd>branch de teste do Neon</dd></div>
+      <div><dt>Último registro na base</dt><dd>06/07/2026</dd></div>
+      <div><dt>Extração</dt><dd>31/07/2026</dd></div>
+    </div>
+    <p class="mini" style="margin-top:14px">
+      Os dados vêm do <strong>branch de teste</strong>, não de produção — para uso interno de
+      coordenação está adequado; para números que vão à diretoria, vale reprocessar contra
+      produção. "Pacientes ativos" é foto de <strong>31/07</strong>; todo o resto é jan–jun.
+      Este guia <strong>não inclui</strong> notas de supervisão, seleções aplicadas nem horários de
+      plantão.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>A régua da associação — jan a jun de 2026</h3>
+    <div class="regua" id="regua"></div>
+    <p class="mini" style="margin-top:14px">
+      Os 21 desta lista são 43% dos terapeutas em atividade e respondem por
+      <strong>75% das sessões</strong> e <strong>80% da receita</strong> da associação no semestre.
+      Perdem menos vínculo por paciente que o restante (39% contra 70%).
+      <br>Dois padrões do semestre que valem citar em qualquer conversa:
+      <strong>junho caiu para todo mundo</strong> (462 sessões marcadas contra 602 em abril, e o
+      comparecimento abaixo de 80% pela primeira vez no ano) e
+      <strong>março concentrou um terço das quebras de vínculo</strong> do semestre inteiro.
+    </p>
+  </div>
+
+  <div class="card nav-card">
+    <h3>Ir para a pessoa</h3>
+    <div class="nav-grid" id="nav"></div>
+    <p class="mini" style="margin-top:14px">
+      <span class="selo selo-reconhecer"><i class="pt"></i>Reconhecer</span> conversa de
+      reconhecimento, com um ou outro ajuste &nbsp;
+      <span class="selo selo-acompanhar"><i class="pt"></i>Acompanhar</span> há um ponto concreto a
+      resolver &nbsp;
+      <span class="selo selo-prioridade"><i class="pt"></i>Prioridade</span> conversar antes das
+      demais
+    </p>
+  </div>
+
+  <div id="terapeutas"></div>
+
+  <div class="card">
+    <h3>Antes de usar qualquer número deste guia</h3>
+    <ul class="lista aten">
+      <li class="grave"><strong>Amanda (56) e Albires (71) registraram 1 sessão em junho</strong>
+        depois de meses com 14 a 22, e nada em julho — mas seguem com 5 e 7 pacientes ativos. Ou
+        pararam de atender, ou pararam de registrar. Enquanto não souber, o semestre deles vale
+        como 5 meses, não 6.</li>
+      <li class="grave"><strong>Comparecimento de 100% costuma ser sub-registro de faltas</strong>,
+        não agenda perfeita. Vale para José Gabriel (10) em todos os meses e para Julia Mattos (33)
+        de janeiro a março.</li>
+      <li><strong>Valores de sessão desatualizados</strong> afetam a leitura de receita de Juliana
+        (7), Tácia (9), Flávia (45) e Julia Mattos (33) — nesta última, o valor cadastrado
+        (R$ 443,33) é incompatível com o que foi de fato registrado como pago.</li>
+      <li><strong>Avaliação de paciente quase não tem base.</strong> A taxa de resposta média da
+        associação é de 14,7%. Só quatro pessoas deste guia têm 3 ou mais respostas: Geovanna (7),
+        Juliana (4), Flávia (4) e Tácia (3). Para as outras, o número é anedota — não leve para a
+        conversa.</li>
+      <li class="info"><strong>A média de taxa de quebra é inútil</strong> (chega a 300% na base
+        para quem recebe reencaminhados). A régua correta é a mediana: 33,3%.</li>
+      <li class="info"><strong>Victoria (87) faz avaliação neuropsicológica</strong>, não terapia
+        semanal. Volume, sessões por paciente e taxa de quebra não significam a mesma coisa para
+        ela.</li>
+    </ul>
+  </div>
+
+  <p class="mini" style="margin-top:26px">
+    Relatório completo em <code>relatorios/relatorio-terapeutas-1o-semestre-2026.md</code> ·
+    dados brutos em <code>relatorios/semestre-2026-s1.json</code>.
+  </p>
+
+</div>
+
+<div id="tip" role="status"></div>
+
+<script>
+/* Fonte pristina da página, capturada ANTES de qualquer renderização.
+   É a partir dela que "Salvar cópia" gera o arquivo novo com as edições embutidas. */
+const HTML_BASE = '<!doctype html>\n' + document.documentElement.outerHTML;
+
+/* ==========================================================  dados  ===== */
+const BASELINE ={"consultas_realizadas": {"media": 54.96, "mediana": 36, "n": 49}, "consultas_registradas": {"media": 66.02, "mediana": 49, "n": 49}, "sessoes_por_mes": {"media": 10.95, "mediana": 9.0, "n": 49}, "pct_realizacao": {"media": 85.37, "mediana": 85.71, "n": 49}, "pacientes_atendidos": {"media": 5.59, "mediana": 6, "n": 49}, "pacientes_ativos_hoje": {"media": 3.84, "mediana": 3, "n": 49}, "sessoes_por_paciente": {"media": 8.93, "mediana": 9.0, "n": 49}, "primeiras_consultas": {"media": 2.35, "mediana": 2, "n": 49}, "quebras": {"media": 2.73, "mediana": 2, "n": 49}, "taxa_quebra": {"media": 48.54, "mediana": 33.33, "n": 49}, "tempo_medio_espera_dias": {"media": 4.77, "mediana": 3.42, "n": 22}, "receita": {"media": 2042.44, "mediana": 1110.0, "n": 49}, "aval_qualidade_geral": {"media": 9.43, "mediana": 10.0, "n": 23}, "taxa_resposta_avaliacao": {"media": 14.7, "mediana": 10.0, "n": 43}};
+
+const DADOS = [
+ {"pacientes_ativos_hoje": 10, "pacientes_atendidos": 10, "consultas_registradas": 227, "consultas_realizadas": 190, "pct_realizacao": 83.7, "meses_ativos": 6, "sessoes_por_mes": 31.67, "sessoes_por_paciente": 19.0, "primeiras_consultas": 2, "quebras": 0, "taxa_quebra": 0.0, "tempo_medio_espera_dias": 3.0, "n_base_espera": 2, "receita": 5830.0, "vlr_sessao_medio": 123.0, "avaliacoes_geradas": 2, "avaliacoes_respondidas": 2, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 100.0, "id": 8, "nome": "Rodolfo César Oliveira Silva", "nucleo": "Marmoris", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 1, "sessoes_por_mes": 1, "pct_realizacao": 27, "pacientes_atendidos": 5, "pacientes_ativos_hoje": 2, "sessoes_por_paciente": 2, "primeiras_consultas": 19, "quebras": 2, "taxa_quebra": 2, "tempo_medio_espera_dias": 7, "receita": 4}, "n_rank": 49, "mensal": [{"m": "01", "reg": 23, "real": 20}, {"m": "02", "reg": 34, "real": 30}, {"m": "03", "reg": 41, "real": 34}, {"m": "04", "reg": 45, "real": 35}, {"m": "05", "reg": 40, "real": 32}, {"m": "06", "reg": 44, "real": 39}], "quebras_det": [], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 11, "pacientes_atendidos": 13, "consultas_registradas": 196, "consultas_realizadas": 173, "pct_realizacao": 88.27, "meses_ativos": 6, "sessoes_por_mes": 28.83, "sessoes_por_paciente": 13.31, "primeiras_consultas": 6, "quebras": 2, "taxa_quebra": 15.38, "tempo_medio_espera_dias": 1.33, "n_base_espera": 3, "receita": 7979.19, "vlr_sessao_medio": 161.82, "avaliacoes_geradas": 15, "avaliacoes_respondidas": 2, "aval_qualidade_geral": 9.0, "pct_continuar_terapeuta": 100.0, "id": 28, "nome": "Beatriz Pereira da Silva", "nucleo": "Marmoris", "desde": "2025-07-04", "ranks": {"consultas_realizadas": 2, "sessoes_por_mes": 2, "pct_realizacao": 23, "pacientes_atendidos": 1, "pacientes_ativos_hoje": 1, "sessoes_por_paciente": 13, "primeiras_consultas": 4, "quebras": 25, "taxa_quebra": 16, "tempo_medio_espera_dias": 4, "receita": 2}, "n_rank": 49, "mensal": [{"m": "01", "reg": 23, "real": 21}, {"m": "02", "reg": 28, "real": 25}, {"m": "03", "reg": 38, "real": 36}, {"m": "04", "reg": 36, "real": 28}, {"m": "05", "reg": 35, "real": 33}, {"m": "06", "reg": 36, "real": 30}], "quebras_det": [{"data": "2026-04-22", "tipo": "Solicitação de reencaminhamento", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-05-12", "tipo": "não responde", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar: atualmente, está com 8 casos, precisamos rever essa quantidade. Devemos reconhecer o empenho dessa terapeuta e, com base nisso, aumentar progressivamente o rigor esperado dela (reforço de fazer isso de maneira progressiva, para não consequenciarmos dedicação e empenho com mais trabalho, algo que pode ser aversivo).\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 9, "pacientes_atendidos": 11, "consultas_registradas": 183, "consultas_realizadas": 163, "pct_realizacao": 89.07, "meses_ativos": 6, "sessoes_por_mes": 27.17, "sessoes_por_paciente": 14.82, "primeiras_consultas": 2, "quebras": 2, "taxa_quebra": 18.18, "tempo_medio_espera_dias": 6.5, "n_base_espera": 2, "receita": 8819.18, "vlr_sessao_medio": 165.0, "avaliacoes_geradas": 15, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 9.0, "pct_continuar_terapeuta": 0.0, "id": 24, "nome": "Laura Simões Dutra", "nucleo": "Macondo", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 3, "sessoes_por_mes": 3, "pct_realizacao": 22, "pacientes_atendidos": 2, "pacientes_ativos_hoje": 3, "sessoes_por_paciente": 8, "primeiras_consultas": 22, "quebras": 23, "taxa_quebra": 18, "tempo_medio_espera_dias": 17, "receita": 1}, "n_rank": 49, "mensal": [{"m": "01", "reg": 28, "real": 21}, {"m": "02", "reg": 24, "real": 22}, {"m": "03", "reg": 33, "real": 31}, {"m": "04", "reg": 35, "real": 32}, {"m": "05", "reg": 28, "real": 26}, {"m": "06", "reg": 35, "real": 31}], "quebras_det": [{"data": "2026-02-22", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-10", "tipo": "alta", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Analisar dados de Setembro e Outubro: a terapeuta apresentou a melhor performance entre todos os terapeutas até o momento. Observar se essa performance se mantém.\nData: 13/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 10, "consultas_registradas": 173, "consultas_realizadas": 137, "pct_realizacao": 79.19, "meses_ativos": 6, "sessoes_por_mes": 22.83, "sessoes_por_paciente": 13.7, "primeiras_consultas": 3, "quebras": 7, "taxa_quebra": 70.0, "tempo_medio_espera_dias": null, "n_base_espera": 0, "receita": 3220.0, "vlr_sessao_medio": 124.0, "avaliacoes_geradas": 17, "avaliacoes_respondidas": 2, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 0.0, "id": 49, "nome": "Alice Chaves Guedon", "nucleo": "Marmoris", "desde": "2025-07-07", "ranks": {"consultas_realizadas": 4, "sessoes_por_mes": 5, "pct_realizacao": 33, "pacientes_atendidos": 6, "pacientes_ativos_hoje": 16, "sessoes_por_paciente": 11, "primeiras_consultas": 17, "quebras": 43, "taxa_quebra": 37, "receita": 11}, "n_rank": 49, "mensal": [{"m": "01", "reg": 34, "real": 25}, {"m": "02", "reg": 33, "real": 28}, {"m": "03", "reg": 30, "real": 24}, {"m": "04", "reg": 30, "real": 23}, {"m": "05", "reg": 25, "real": 19}, {"m": "06", "reg": 21, "real": 18}], "quebras_det": [{"data": "2026-01-05", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-01-26", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-02-02", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-02-27", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-05-27", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-10", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-06-17", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "«Estou deixando o cargo de coordenadora de eventos, mas ainda estarei no setor de eventos como porta-voz para conduzir grupos/eventos presenciais. Também estou atendendo oficialmente 9 casos, mas tem uma que não me responde há muitos dias, então provavelmente serão 8 no final das contas. Foi conversado com o Alan que, por ora, não devo receber mais novos casos.» — Alice Guedon\n\nConversar: considerando que a quantidade de casos de 8 está combinada, verificar se houve entradas recentes, se há pacientes quinzenais ou com dificuldade pontual, pois há dados que sinalizam pagamento abaixo do esperado e pacientes com número de sessões menor que o esperado.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 6, "pacientes_atendidos": 10, "consultas_registradas": 145, "consultas_realizadas": 135, "pct_realizacao": 93.1, "meses_ativos": 6, "sessoes_por_mes": 22.5, "sessoes_por_paciente": 13.5, "primeiras_consultas": 4, "quebras": 4, "taxa_quebra": 40.0, "tempo_medio_espera_dias": 10.0, "n_base_espera": 4, "receita": 5551.53, "vlr_sessao_medio": 186.67, "avaliacoes_geradas": 7, "avaliacoes_respondidas": 4, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 75.0, "id": 7, "nome": "Juliana Conceição de Medeiros", "nucleo": "Prisma", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 5, "sessoes_por_mes": 6, "pct_realizacao": 20, "pacientes_atendidos": 4, "pacientes_ativos_hoje": 11, "sessoes_por_paciente": 12, "primeiras_consultas": 9, "quebras": 36, "taxa_quebra": 27, "tempo_medio_espera_dias": 21, "receita": 5}, "n_rank": 49, "mensal": [{"m": "01", "reg": 14, "real": 14}, {"m": "02", "reg": 18, "real": 17}, {"m": "03", "reg": 27, "real": 25}, {"m": "04", "reg": 26, "real": 23}, {"m": "05", "reg": 26, "real": 26}, {"m": "06", "reg": 34, "real": 30}], "quebras_det": [{"data": "2026-01-08", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-01-28", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-02-05", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-07-01", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar urgentemente: precisamos rever os preços dos pacientes da terapeuta e corrigir os valores cadastrados no sistema.\nData: 13/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 9, "consultas_registradas": 167, "consultas_realizadas": 132, "pct_realizacao": 79.04, "meses_ativos": 6, "sessoes_por_mes": 22.0, "sessoes_por_paciente": 14.67, "primeiras_consultas": 3, "quebras": 4, "taxa_quebra": 44.44, "tempo_medio_espera_dias": 3.33, "n_base_espera": 3, "receita": 2700.0, "vlr_sessao_medio": 55.71, "avaliacoes_geradas": 12, "avaliacoes_respondidas": 3, "aval_qualidade_geral": 9.67, "pct_continuar_terapeuta": 66.67, "id": 9, "nome": "Tácia Hellen Melo de Almeida", "nucleo": "Prisma", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 6, "sessoes_por_mes": 7, "pct_realizacao": 34, "pacientes_atendidos": 10, "pacientes_ativos_hoje": 5, "sessoes_por_paciente": 9, "primeiras_consultas": 15, "quebras": 37, "taxa_quebra": 30, "tempo_medio_espera_dias": 11, "receita": 16}, "n_rank": 49, "mensal": [{"m": "01", "reg": 22, "real": 21}, {"m": "02", "reg": 23, "real": 20}, {"m": "03", "reg": 35, "real": 24}, {"m": "04", "reg": 27, "real": 23}, {"m": "05", "reg": 31, "real": 24}, {"m": "06", "reg": 29, "real": 20}], "quebras_det": [{"data": "2026-01-19", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-01-26", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-02", "tipo": "alta", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-03", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": "«Minhas funções no estágio envolvem o atendimento de 9 casos, a atuação no setor de mídia (design e produção de eventos), além da participação no cronograma A da formação.» — Tácia Hellen\n\nConversar: verificar inadimplência dos pacientes e aumentar o preço dos que estiverem abaixo de 100 reais.\nData: 13/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 9, "consultas_registradas": 158, "consultas_realizadas": 124, "pct_realizacao": 78.48, "meses_ativos": 6, "sessoes_por_mes": 20.67, "sessoes_por_paciente": 13.78, "primeiras_consultas": 2, "quebras": 2, "taxa_quebra": 22.22, "tempo_medio_espera_dias": 3.0, "n_base_espera": 1, "receita": 7677.72, "vlr_sessao_medio": 189.29, "avaliacoes_geradas": 9, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 23, "nome": "Giulia Rani Alves Mota dos Santos", "nucleo": "Macondo", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 7, "sessoes_por_mes": 8, "pct_realizacao": 35, "pacientes_atendidos": 11, "pacientes_ativos_hoje": 6, "sessoes_por_paciente": 10, "primeiras_consultas": 21, "quebras": 22, "taxa_quebra": 19, "tempo_medio_espera_dias": 8, "receita": 3}, "n_rank": 49, "mensal": [{"m": "01", "reg": 27, "real": 20}, {"m": "02", "reg": 25, "real": 22}, {"m": "03", "reg": 24, "real": 20}, {"m": "04", "reg": 26, "real": 22}, {"m": "05", "reg": 28, "real": 23}, {"m": "06", "reg": 28, "real": 17}], "quebras_det": [{"data": "2026-03-21", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-21", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar: verificar o número de sessões registradas no sistema (corrigir caso esteja preenchendo somente as realizadas).\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 6, "pacientes_atendidos": 7, "consultas_registradas": 143, "consultas_realizadas": 114, "pct_realizacao": 79.72, "meses_ativos": 6, "sessoes_por_mes": 19.0, "sessoes_por_paciente": 16.29, "primeiras_consultas": 4, "quebras": 2, "taxa_quebra": 28.57, "tempo_medio_espera_dias": 5.83, "n_base_espera": 6, "receita": 3797.9, "vlr_sessao_medio": 133.33, "avaliacoes_geradas": 7, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 100.0, "id": 41, "nome": "Thainá Silva dos Reis", "nucleo": "Macondo", "desde": "2025-07-04", "ranks": {"consultas_realizadas": 8, "sessoes_por_mes": 10, "pct_realizacao": 31, "pacientes_atendidos": 20, "pacientes_ativos_hoje": 14, "sessoes_por_paciente": 5, "primeiras_consultas": 11, "quebras": 26, "taxa_quebra": 22, "tempo_medio_espera_dias": 14, "receita": 9}, "n_rank": 49, "mensal": [{"m": "01", "reg": 16, "real": 15}, {"m": "02", "reg": 24, "real": 18}, {"m": "03", "reg": 22, "real": 17}, {"m": "04", "reg": 28, "real": 25}, {"m": "05", "reg": 25, "real": 23}, {"m": "06", "reg": 28, "real": 16}], "quebras_det": [{"data": "2026-01-07", "tipo": "não responde", "cancelador": "paciente", "momento": "Antes da primeira sessão"}, {"data": "2026-03-12", "tipo": "não responde", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 6, "pacientes_atendidos": 9, "consultas_registradas": 131, "consultas_realizadas": 101, "pct_realizacao": 77.1, "meses_ativos": 6, "sessoes_por_mes": 16.83, "sessoes_por_paciente": 11.22, "primeiras_consultas": 2, "quebras": 5, "taxa_quebra": 55.56, "tempo_medio_espera_dias": 6.0, "n_base_espera": 2, "receita": 3016.78, "vlr_sessao_medio": 141.67, "avaliacoes_geradas": 11, "avaliacoes_respondidas": 4, "aval_qualidade_geral": 8.25, "pct_continuar_terapeuta": 50.0, "id": 45, "nome": "Flávia Gonçalves Moreira", "nucleo": "Macondo", "desde": "2025-07-05", "ranks": {"consultas_realizadas": 10, "sessoes_por_mes": 13, "pct_realizacao": 38, "pacientes_atendidos": 13, "pacientes_ativos_hoje": 15, "sessoes_por_paciente": 18, "primeiras_consultas": 23, "quebras": 40, "taxa_quebra": 34, "tempo_medio_espera_dias": 15, "receita": 13}, "n_rank": 49, "mensal": [{"m": "01", "reg": 25, "real": 24}, {"m": "02", "reg": 20, "real": 15}, {"m": "03", "reg": 23, "real": 16}, {"m": "04", "reg": 26, "real": 18}, {"m": "05", "reg": 18, "real": 14}, {"m": "06", "reg": 19, "real": 14}], "quebras_det": [{"data": "2026-02-02", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-11", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-11", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-31", "tipo": "não responde", "cancelador": "paciente", "momento": "Antes da primeira sessão"}, {"data": "2026-05-07", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar: verificar financeiro dos pacientes (valor pago por cada um, registro disso no Hamilton e pagamentos atrasados).\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 6, "pacientes_atendidos": 9, "consultas_registradas": 103, "consultas_realizadas": 98, "pct_realizacao": 95.15, "meses_ativos": 6, "sessoes_por_mes": 16.33, "sessoes_por_paciente": 10.89, "primeiras_consultas": 3, "quebras": 3, "taxa_quebra": 33.33, "tempo_medio_espera_dias": 1.0, "n_base_espera": 1, "receita": 4000.0, "vlr_sessao_medio": 443.33, "avaliacoes_geradas": 10, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 8.0, "pct_continuar_terapeuta": 100.0, "id": 33, "nome": "Julia Mattos Goulart", "nucleo": "Macondo", "desde": "2025-07-04", "ranks": {"consultas_realizadas": 11, "sessoes_por_mes": 14, "pct_realizacao": 18, "pacientes_atendidos": 12, "pacientes_ativos_hoje": 13, "sessoes_por_paciente": 19, "primeiras_consultas": 16, "quebras": 32, "taxa_quebra": 26, "tempo_medio_espera_dias": 1, "receita": 8}, "n_rank": 49, "mensal": [{"m": "01", "reg": 7, "real": 7}, {"m": "02", "reg": 14, "real": 14}, {"m": "03", "reg": 14, "real": 14}, {"m": "04", "reg": 35, "real": 33}, {"m": "05", "reg": 18, "real": 15}, {"m": "06", "reg": 15, "real": 15}], "quebras_det": [{"data": "2026-03-24", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-01", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-01", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar: verificar dados dos atendimentos de setembro, primeiro mês de estágio da terapeuta, para avaliarmos sua performance inicial e verificar os dados estranhos.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 9, "consultas_registradas": 96, "consultas_realizadas": 91, "pct_realizacao": 94.79, "meses_ativos": 6, "sessoes_por_mes": 15.17, "sessoes_por_paciente": 10.11, "primeiras_consultas": 1, "quebras": 7, "taxa_quebra": 77.78, "tempo_medio_espera_dias": null, "n_base_espera": 0, "receita": 1187.89, "vlr_sessao_medio": 104.0, "avaliacoes_geradas": 10, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 100.0, "id": 56, "nome": "Amanda Borges de Souza", "nucleo": "Prisma", "desde": "2025-07-09", "ranks": {"consultas_realizadas": 12, "sessoes_por_mes": 16, "pct_realizacao": 19, "pacientes_atendidos": 14, "pacientes_ativos_hoje": 17, "sessoes_por_paciente": 21, "primeiras_consultas": 28, "quebras": 44, "taxa_quebra": 39, "receita": 23}, "n_rank": 49, "mensal": [{"m": "01", "reg": 22, "real": 22}, {"m": "02", "reg": 22, "real": 22}, {"m": "03", "reg": 15, "real": 15}, {"m": "04", "reg": 20, "real": 20}, {"m": "05", "reg": 16, "real": 11}, {"m": "06", "reg": 1, "real": 1}], "quebras_det": [{"data": "2026-01-27", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-02-04", "tipo": "não responde", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-02-09", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-10", "tipo": "Solicitação de reencaminhamento", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-10", "tipo": "Solicitação de reencaminhamento", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-10", "tipo": "Solicitação de reencaminhamento", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-06-05", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Terapeuta regular, sem necessidade de conversar.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 7, "consultas_registradas": 115, "consultas_realizadas": 89, "pct_realizacao": 77.39, "meses_ativos": 6, "sessoes_por_mes": 14.83, "sessoes_por_paciente": 12.71, "primeiras_consultas": 1, "quebras": 3, "taxa_quebra": 42.86, "tempo_medio_espera_dias": 7.0, "n_base_espera": 1, "receita": 3791.67, "vlr_sessao_medio": 172.86, "avaliacoes_geradas": 4, "avaliacoes_respondidas": 2, "aval_qualidade_geral": 8.5, "pct_continuar_terapeuta": 50.0, "id": 71, "nome": "Albires Ferreira de Lima Junior", "nucleo": "Marmoris", "desde": "2025-07-17", "ranks": {"consultas_realizadas": 14, "sessoes_por_mes": 17, "pct_realizacao": 37, "pacientes_atendidos": 21, "pacientes_ativos_hoje": 8, "sessoes_por_paciente": 15, "primeiras_consultas": 29, "quebras": 33, "taxa_quebra": 29, "tempo_medio_espera_dias": 18, "receita": 10}, "n_rank": 49, "mensal": [{"m": "01", "reg": 26, "real": 20}, {"m": "02", "reg": 24, "real": 17}, {"m": "03", "reg": 27, "real": 20}, {"m": "04", "reg": 21, "real": 17}, {"m": "05", "reg": 16, "real": 14}, {"m": "06", "reg": 1, "real": 1}], "quebras_det": [{"data": "2026-02-25", "tipo": null, "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-04-15", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-05-25", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Terapeuta está regular, não é necessário entrar em contato.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 11, "consultas_registradas": 111, "consultas_realizadas": 87, "pct_realizacao": 78.38, "meses_ativos": 6, "sessoes_por_mes": 14.5, "sessoes_por_paciente": 7.91, "primeiras_consultas": 4, "quebras": 8, "taxa_quebra": 72.73, "tempo_medio_espera_dias": 5.0, "n_base_espera": 4, "receita": 5315.49, "vlr_sessao_medio": 162.86, "avaliacoes_geradas": 15, "avaliacoes_respondidas": 2, "aval_qualidade_geral": 9.0, "pct_continuar_terapeuta": 100.0, "id": 75, "nome": "Fernanda Teixeira de Paula Parreiras", "nucleo": "Prisma", "desde": "2025-09-30", "ranks": {"consultas_realizadas": 15, "sessoes_por_mes": 18, "pct_realizacao": 36, "pacientes_atendidos": 3, "pacientes_ativos_hoje": 9, "sessoes_por_paciente": 27, "primeiras_consultas": 12, "quebras": 46, "taxa_quebra": 38, "tempo_medio_espera_dias": 13, "receita": 6}, "n_rank": 49, "mensal": [{"m": "01", "reg": 4, "real": 4}, {"m": "02", "reg": 23, "real": 16}, {"m": "03", "reg": 25, "real": 19}, {"m": "04", "reg": 22, "real": 15}, {"m": "05", "reg": 21, "real": 19}, {"m": "06", "reg": 16, "real": 14}], "quebras_det": [{"data": "2026-02-22", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-04-20", "tipo": "desistencia", "cancelador": "paciente", "momento": "Antes da primeira sessão"}, {"data": "2026-05-03", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-05-17", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-26", "tipo": "não responde", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-26", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-26", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-26", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Entrada como estagiária em 25/09/2025. Estágio clínico.\nData: 26/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 8, "pacientes_atendidos": 9, "consultas_registradas": 113, "consultas_realizadas": 82, "pct_realizacao": 72.57, "meses_ativos": 4, "sessoes_por_mes": 20.5, "sessoes_por_paciente": 9.11, "primeiras_consultas": 9, "quebras": 1, "taxa_quebra": 11.11, "tempo_medio_espera_dias": 1.67, "n_base_espera": 6, "receita": 3125.38, "vlr_sessao_medio": 117.5, "avaliacoes_geradas": 10, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 100.0, "id": 86, "nome": "Gabriela Alves da Silva", "nucleo": "Marmoris", "desde": "2026-03-12", "ranks": {"consultas_realizadas": 16, "sessoes_por_mes": 9, "pct_realizacao": 42, "pacientes_atendidos": 16, "pacientes_ativos_hoje": 4, "sessoes_por_paciente": 24, "primeiras_consultas": 2, "quebras": 19, "taxa_quebra": 15, "tempo_medio_espera_dias": 5, "receita": 12}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 0, "real": 0}, {"m": "03", "reg": 3, "real": 3}, {"m": "04", "reg": 28, "real": 24}, {"m": "05", "reg": 45, "real": 30}, {"m": "06", "reg": 37, "real": 25}], "quebras_det": [{"data": "2026-06-16", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 10, "consultas_registradas": 98, "consultas_realizadas": 80, "pct_realizacao": 81.63, "meses_ativos": 5, "sessoes_por_mes": 16.0, "sessoes_por_paciente": 8.0, "primeiras_consultas": 11, "quebras": 6, "taxa_quebra": 60.0, "tempo_medio_espera_dias": 3.0, "n_base_espera": 3, "receita": 1833.29, "vlr_sessao_medio": 112.0, "avaliacoes_geradas": 20, "avaliacoes_respondidas": 7, "aval_qualidade_geral": 9.43, "pct_continuar_terapeuta": 85.71, "id": 83, "nome": "Geovanna Campos de Arruda", "nucleo": "Macondo", "desde": "2026-01-28", "ranks": {"consultas_realizadas": 17, "sessoes_por_mes": 15, "pct_realizacao": 29, "pacientes_atendidos": 8, "pacientes_ativos_hoje": 18, "sessoes_por_paciente": 26, "primeiras_consultas": 1, "quebras": 42, "taxa_quebra": 36, "tempo_medio_espera_dias": 9, "receita": 20}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 18, "real": 13}, {"m": "03", "reg": 19, "real": 11}, {"m": "04", "reg": 23, "real": 20}, {"m": "05", "reg": 22, "real": 21}, {"m": "06", "reg": 16, "real": 15}], "quebras_det": [{"data": "2026-03-19", "tipo": "desistencia", "cancelador": "paciente", "momento": "Antes da primeira sessão"}, {"data": "2026-03-19", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-26", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-26", "tipo": "não responde", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-03-26", "tipo": "não responde", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-06-09", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 6, "pacientes_atendidos": 6, "consultas_registradas": 64, "consultas_realizadas": 64, "pct_realizacao": 100.0, "meses_ativos": 6, "sessoes_por_mes": 10.67, "sessoes_por_paciente": 10.67, "primeiras_consultas": 0, "quebras": 2, "taxa_quebra": 33.33, "tempo_medio_espera_dias": null, "n_base_espera": 0, "receita": 4380.0, "vlr_sessao_medio": 190.0, "avaliacoes_geradas": 6, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 10, "nome": "José Gabriel Rodrigues Ângelo", "nucleo": "Macondo", "desde": "2025-07-02", "ranks": {"consultas_realizadas": 18, "sessoes_por_mes": 20, "pct_realizacao": 2, "pacientes_atendidos": 24, "pacientes_ativos_hoje": 12, "sessoes_por_paciente": 20, "primeiras_consultas": 36, "quebras": 21, "taxa_quebra": 25, "receita": 7}, "n_rank": 49, "mensal": [{"m": "01", "reg": 2, "real": 2}, {"m": "02", "reg": 22, "real": 22}, {"m": "03", "reg": 26, "real": 26}, {"m": "04", "reg": 5, "real": 5}, {"m": "05", "reg": 4, "real": 4}, {"m": "06", "reg": 5, "real": 5}], "quebras_det": [{"data": "2026-02-12", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-07", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Conversar urgentemente: os dados sinalizam problemas clínicos e dificuldade de manejo pelo terapeuta.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 10, "consultas_registradas": 89, "consultas_realizadas": 63, "pct_realizacao": 70.79, "meses_ativos": 6, "sessoes_por_mes": 10.5, "sessoes_por_paciente": 6.3, "primeiras_consultas": 5, "quebras": 6, "taxa_quebra": 60.0, "tempo_medio_espera_dias": 1.0, "n_base_espera": 1, "receita": 1150.0, "vlr_sessao_medio": 100.0, "avaliacoes_geradas": 11, "avaliacoes_respondidas": 1, "aval_qualidade_geral": 10.0, "pct_continuar_terapeuta": 0.0, "id": 65, "nome": "Cindy Marcelly Silva Vitoriano", "nucleo": "Prisma", "desde": "2025-07-13", "ranks": {"consultas_realizadas": 19, "sessoes_por_mes": 21, "pct_realizacao": 44, "pacientes_atendidos": 7, "pacientes_ativos_hoje": 7, "sessoes_por_paciente": 31, "primeiras_consultas": 8, "quebras": 41, "taxa_quebra": 35, "tempo_medio_espera_dias": 2, "receita": 24}, "n_rank": 49, "mensal": [{"m": "01", "reg": 19, "real": 14}, {"m": "02", "reg": 13, "real": 10}, {"m": "03", "reg": 18, "real": 12}, {"m": "04", "reg": 15, "real": 10}, {"m": "05", "reg": 12, "real": 8}, {"m": "06", "reg": 12, "real": 9}], "quebras_det": [{"data": "2026-02-23", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-03-04", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-04-07", "tipo": null, "cancelador": null, "momento": null}, {"data": "2026-04-08", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Antes da primeira sessão"}, {"data": "2026-04-14", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-05-14", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": "Terapeuta regular. Apenas revisar quantidade de casos no contrato de estágio fechado em agosto.\nData: 12/09/2025 · Parecerista: Diogo Varago"},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 7, "consultas_registradas": 69, "consultas_realizadas": 48, "pct_realizacao": 69.57, "meses_ativos": 5, "sessoes_por_mes": 9.6, "sessoes_por_paciente": 6.86, "primeiras_consultas": 6, "quebras": 2, "taxa_quebra": 28.57, "tempo_medio_espera_dias": 3.0, "n_base_espera": 1, "receita": 2285.12, "vlr_sessao_medio": 130.0, "avaliacoes_geradas": 8, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 84, "nome": "Victor Alves Toscano", "nucleo": "Prisma", "desde": "2026-02-11", "ranks": {"consultas_realizadas": 23, "sessoes_por_mes": 23, "pct_realizacao": 45, "pacientes_atendidos": 23, "pacientes_ativos_hoje": 19, "sessoes_por_paciente": 30, "primeiras_consultas": 6, "quebras": 28, "taxa_quebra": 23, "tempo_medio_espera_dias": 10, "receita": 17}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 1, "real": 1}, {"m": "03", "reg": 21, "real": 13}, {"m": "04", "reg": 22, "real": 17}, {"m": "05", "reg": 16, "real": 10}, {"m": "06", "reg": 9, "real": 7}], "quebras_det": [{"data": "2026-04-06", "tipo": "desistencia", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-05-17", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 8, "consultas_registradas": 54, "consultas_realizadas": 28, "pct_realizacao": 51.85, "meses_ativos": 4, "sessoes_por_mes": 7.0, "sessoes_por_paciente": 3.5, "primeiras_consultas": 8, "quebras": 2, "taxa_quebra": 25.0, "tempo_medio_espera_dias": 7.0, "n_base_espera": 5, "receita": 524.21, "vlr_sessao_medio": 80.0, "avaliacoes_geradas": 11, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 85, "nome": "Odara", "nucleo": "Humanista", "desde": "2026-02-12", "ranks": {"consultas_realizadas": 27, "sessoes_por_mes": 31, "pct_realizacao": 48, "pacientes_atendidos": 19, "pacientes_ativos_hoje": 20, "sessoes_por_paciente": 38, "primeiras_consultas": 3, "quebras": 29, "taxa_quebra": 21, "tempo_medio_espera_dias": 19, "receita": 36}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 0, "real": 0}, {"m": "03", "reg": 3, "real": 2}, {"m": "04", "reg": 14, "real": 9}, {"m": "05", "reg": 14, "real": 4}, {"m": "06", "reg": 23, "real": 13}], "quebras_det": [{"data": "2026-05-07", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}, {"data": "2026-06-23", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 7, "pacientes_atendidos": 6, "consultas_registradas": 14, "consultas_realizadas": 12, "pct_realizacao": 85.71, "meses_ativos": 2, "sessoes_por_mes": 6.0, "sessoes_por_paciente": 2.0, "primeiras_consultas": 6, "quebras": 1, "taxa_quebra": 16.67, "tempo_medio_espera_dias": 7.75, "n_base_espera": 4, "receita": 871.12, "vlr_sessao_medio": 142.86, "avaliacoes_geradas": 7, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 91, "nome": "Geovani Nascimento Negreiros", "nucleo": "Macondo", "desde": "2026-05-05", "ranks": {"consultas_realizadas": 37, "sessoes_por_mes": 32, "pct_realizacao": 25, "pacientes_atendidos": 25, "pacientes_ativos_hoje": 10, "sessoes_por_paciente": 41, "primeiras_consultas": 7, "quebras": 20, "taxa_quebra": 17, "tempo_medio_espera_dias": 20, "receita": 30}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 0, "real": 0}, {"m": "03", "reg": 0, "real": 0}, {"m": "04", "reg": 0, "real": 0}, {"m": "05", "reg": 3, "real": 3}, {"m": "06", "reg": 11, "real": 9}], "quebras_det": [{"data": "2026-06-07", "tipo": "desistencia", "cancelador": "paciente", "momento": "Depois da primeira sessão"}], "obs_cadastro": ""},
+ {"pacientes_ativos_hoje": 5, "pacientes_atendidos": 4, "consultas_registradas": 4, "consultas_realizadas": 4, "pct_realizacao": 100.0, "meses_ativos": 2, "sessoes_por_mes": 2.0, "sessoes_por_paciente": 1.0, "primeiras_consultas": 4, "quebras": 2, "taxa_quebra": 50.0, "tempo_medio_espera_dias": 1.0, "n_base_espera": 2, "receita": 3000.0, "vlr_sessao_medio": 1000.0, "avaliacoes_geradas": 7, "avaliacoes_respondidas": 0, "aval_qualidade_geral": null, "pct_continuar_terapeuta": null, "id": 87, "nome": "Victoria Braga Resende", "nucleo": "Avaliação Neuropsicológica", "desde": "2026-03-30", "ranks": {"consultas_realizadas": 42, "sessoes_por_mes": 43, "pct_realizacao": 11, "pacientes_atendidos": 30, "pacientes_ativos_hoje": 21, "sessoes_por_paciente": 46, "primeiras_consultas": 14, "quebras": 30, "taxa_quebra": 33, "tempo_medio_espera_dias": 3, "receita": 14}, "n_rank": 49, "mensal": [{"m": "01", "reg": 0, "real": 0}, {"m": "02", "reg": 0, "real": 0}, {"m": "03", "reg": 0, "real": 0}, {"m": "04", "reg": 0, "real": 0}, {"m": "05", "reg": 3, "real": 3}, {"m": "06", "reg": 1, "real": 1}], "quebras_det": [{"data": "2026-06-03", "tipo": "alta", "cancelador": "terapeuta", "momento": "Depois da primeira sessão"}, {"data": "2026-06-30", "tipo": "alta", "cancelador": "terapeuta", "momento": null}], "obs_cadastro": ""},
+];
+
+/* ==========================================================  textos  ==== */
+const TEXTOS = {
+8: { tag:'reconhecer', chamada:'Maior volume da associação com retenção perfeita',
+  resumo:'190 sessões no semestre — o maior volume da Allos — e <strong>nenhuma quebra de vínculo</strong> em 10 pacientes. É a combinação mais rara da base: carteira grande normalmente vem acompanhada de perdas.',
+  fortes:['1º lugar em sessões realizadas e em sessões por mês, entre 49 terapeutas.',
+    'Zero quebras de vínculo no semestre inteiro — só mais um terapeuta com volume relevante conseguiu isso.',
+    '19 sessões por paciente: os processos dele são dos mais longos da casa, sinal de vínculo que se sustenta.',
+    'Cresceu todos os meses; junho foi o melhor mês dele, na contramão da associação, que caiu.',
+    'As duas avaliações de paciente que chegaram deram nota 10 e ambas continuariam com ele.'],
+  atencao:[{n:'aviso', t:'<strong>Só 2 primeiras consultas no semestre</strong> (19º/49). A carteira é grande, mas quase não entrou caso novo — o volume vem de manter, não de captar.'},
+    {n:'aviso', t:'O comparecimento (83,7%) está <em>abaixo</em> da mediana da associação (85,7%). Com 227 sessões marcadas, cada ponto percentual são duas sessões perdidas.'},
+    {n:'info', t:'Volume nesse patamar levanta a pergunta de sustentabilidade, não de esforço. Vale checar como ele está.'}],
+  perguntas:['Como está sendo sustentar 10 pacientes ativos nesse ritmo? O que precisaria mudar para isso continuar viável no 2º semestre?',
+    'Você tem zero quebras num semestre em que a associação teve 134. O que você faz no manejo de falta e de contrato que dá certo? (isso vale ser levado para os outros)',
+    'Quer receber casos novos ou prefere manter a carteira atual?',
+    'De 227 sessões marcadas, 37 não aconteceram. Você identifica um padrão nessas faltas?'],
+  privado:['Não há nenhuma observação aberta no cadastro dele.',
+    'O risco aqui é sobrecarga, não desempenho. Ele vem crescendo mês a mês e fechou junho com 44 sessões marcadas — se a coordenação quiser distribuir casos novos, ele não é o destino.',
+    'Ele é o melhor exemplo prático de manejo de vínculo que a associação tem no semestre. Vale extrair a prática dele e transformar em orientação para os demais.'] },
+
+28: { tag:'reconhecer', chamada:'A maior carteira da casa, sustentada',
+  resumo:'13 pacientes atendidos e 11 ativos hoje — a maior carteira da associação — com taxa de quebra de 15,4%, <strong>menos da metade da mediana</strong>. Volume alto e vínculo firme ao mesmo tempo.',
+  fortes:['1º lugar em pacientes atendidos e em pacientes ativos; 2º em sessões realizadas.',
+    'Taxa de quebra de 15,4% contra mediana de 33,3% da associação — e com a maior carteira de todas.',
+    'Acolhe rápido: 1,3 dia entre o cadastro e a primeira sessão (mediana da casa: 3,4 dias).',
+    'Segunda maior receita registrada do semestre: R$ 7.979.',
+    'Produção estável nos seis meses, sem mês fraco.'],
+  atencao:[{n:'aviso', t:'As 2 quebras foram registradas <strong>por ela</strong> — um reencaminhamento (22/04) e um "não responde" (12/05). Vale entender o critério que ela usou.'},
+    {n:'aviso', t:'11 pacientes ativos é bastante acima do que está combinado para estagiários. Precisa ser tratado como carga, não como mérito.'}],
+  perguntas:['Você está com 11 casos ativos, a maior carteira da associação. Como está a carga? O que está sendo sacrificado para dar conta?',
+    'Como você decide reencaminhar um caso? Queremos entender o critério para orientar os outros.',
+    'Se a associação limitar a carteira, quais casos você gostaria de manter e por quê?',
+    'O que te ajudaria a manter esse nível sem chegar no limite?'],
+  privado:['<strong>Já existe um parecer aberto sobre a carteira dela.</strong> Em 12/09/2025 foi registrado que ela estava com 8 casos e que "precisamos rever essa quantidade" — hoje são 11. A recomendação não foi seguida, ou foi na direção contrária.',
+    'O mesmo parecer orienta reconhecer o empenho e aumentar o rigor <em>progressivamente</em>, para não punir dedicação com mais trabalho. Vale reler antes da conversa.',
+    'Ou seja: a conversa tem que reconhecer o resultado e, ao mesmo tempo, tratar carteira. Não misture as duas coisas na mesma frase.'] },
+
+24: { tag:'reconhecer', chamada:'Volume alto e a maior receita da associação',
+  resumo:'163 sessões e <strong>R$ 8.819 de receita registrada — a maior da Allos no semestre</strong>, com taxa de quebra abaixo da mediana e produção estável nos seis meses.',
+  fortes:['1º lugar em receita registrada; 3º em sessões realizadas e em sessões por mês.',
+    '11 pacientes atendidos com 14,8 sessões cada — processos longos, não rotatividade.',
+    'Taxa de quebra de 18,2%, contra mediana de 33,3%.',
+    'Comparecimento de 89,1%, acima da mediana da associação.'],
+  atencao:[{n:'aviso', t:'<strong>6,5 dias até a primeira sessão</strong> (17º de 22 com base para o cálculo) — dos mais lentos da casa. Costuma ser agenda cheia demais para encaixar um caso novo.'},
+    {n:'aviso', t:'Apenas 2 primeiras consultas no semestre. Como no caso do Rodolfo, o volume vem de manter, não de receber.'},
+    {n:'info', t:'1 avaliação respondida de 15 geradas. A base é fina demais para dizer qualquer coisa sobre satisfação — não use esse número na conversa.'}],
+  perguntas:['O tempo entre o cadastro e a primeira sessão dos seus casos é de 6,5 dias, o dobro da mediana. O que costuma travar esse encaixe?',
+    'Sua carteira está estável e produtiva. Você tem espaço para novos casos ou está no limite?',
+    'Você tem a maior receita da associação. Os valores cadastrados dos seus pacientes estão todos corretos?',
+    'Como você conduz o encerramento? Suas duas quebras foram uma desistência e uma alta — quer falar sobre elas?'],
+  privado:['O parecer de 13/09/2025 pedia acompanhar se a performance dela se mantinha ("apresentou a melhor performance entre todos os terapeutas até o momento"). <strong>Se manteve</strong> — vale dizer isso a ela.',
+    'A única avaliação de paciente respondida marcou que não continuaria com a terapeuta. Com base 1, isso não significa nada estatisticamente — mas se ela puxar o assunto de avaliação, você já sabe o que está lá.'] },
+
+49: { tag:'acompanhar', chamada:'Volume alto numa carteira em encerramento combinado',
+  resumo:'137 sessões no semestre (4º da associação), mas com 7 quebras de vínculo e queda contínua mês a mês. <strong>O contexto muda a leitura:</strong> foi combinado que ela não receberia novos casos.',
+  fortes:['4º lugar em sessões realizadas e 5º em sessões por mês, entre 49 terapeutas.',
+    '10 pacientes atendidos com 13,7 sessões cada.',
+    'As duas avaliações respondidas deram nota 10 para a qualidade do atendimento.',
+    'Manteve produção alta mesmo com a carteira encolhendo de propósito.'],
+  atencao:[{n:'aviso', t:'<strong>7 quebras, taxa de 70%</strong> — mais que o dobro da mediana. Mas 3 delas foram registradas por ela (2 altas e 1 desistência), o que é compatível com encerramento planejado.'},
+    {n:'aviso', t:'Queda contínua: 25 sessões em janeiro, 18 em junho (−28%). Também compatível com o combinado, mas precisa ser confirmado.'},
+    {n:'aviso', t:'Comparecimento de 79,2%, abaixo da mediana.'}],
+  perguntas:['Como está o encerramento dos casos? Está no ritmo que você combinou?',
+    'Você seguiu sem receber novos casos, como tinha sido acordado. Isso ainda faz sentido para você no 2º semestre?',
+    'Dos seus 5 casos ativos, algum precisa de apoio ou de reencaminhamento?',
+    'O que você quer da sua atuação na Allos daqui para frente?'],
+  privado:['<strong>Leia isto antes:</strong> ela mesma registrou no cadastro que deixou a coordenação de eventos e que "foi conversado com o Alan que, por ora, não devo receber mais novos casos".',
+    '<strong>Não trate a queda e as quebras como deterioração.</strong> Sem esse contexto, o gráfico dela parece um problema — e não é. Confirme a situação com o Alan antes da conversa.',
+    'Há um segundo parecer pedindo verificar pagamento abaixo do esperado e pacientes com menos sessões do que o previsto. Se for tratar de financeiro, é este o ponto.'] },
+
+7: { tag:'reconhecer', chamada:'O melhor comparecimento entre os de volume alto',
+  resumo:'135 sessões com <strong>93,1% de comparecimento</strong> — quase ninguém acima de 100 sessões chega perto disso. É também quem tem a melhor nota de satisfação com base utilizável na associação.',
+  fortes:['93,1% de comparecimento com 145 sessões marcadas: só 10 não aconteceram no semestre inteiro.',
+    'Curva ascendente: 14 sessões em janeiro, 30 em junho — cresceu enquanto a associação caía.',
+    '4 avaliações respondidas de 7 geradas (57% contra 14,7% de média): <strong>nota 10 de qualidade</strong> e 75% continuariam com ela. É a melhor base de satisfação da casa.',
+    '5ª maior receita do semestre.'],
+  atencao:[{n:'grave', t:'<strong>10 dias até a primeira sessão</strong> — 21º de 22. É o pior tempo de acolhimento entre quem tem base para o cálculo, e o paciente que espera dez dias é o que mais desiste.'},
+    {n:'aviso', t:'4 quebras (taxa de 40%), sendo 3 registradas por ela nos dois primeiros meses.'}],
+  perguntas:['Seu comparecimento é o melhor da casa entre quem tem volume alto. O que você faz de diferente no combinado com o paciente?',
+    'O tempo até a primeira sessão dos seus casos é de 10 dias, o mais longo da associação. Onde está o gargalo — sua agenda, o contato, o encaixe?',
+    'Você foi quem mais teve paciente respondendo avaliação. Como você faz esse convite? Queremos replicar.',
+    'Sobre os valores dos seus pacientes: eles estão atualizados no sistema?'],
+  privado:['<strong>Parecer aberto:</strong> "conversar urgentemente: precisamos rever os preços dos pacientes da terapeuta e corrigir os valores cadastrados no sistema" (13/09/2025). Continua pendente — a receita dela pode estar errada nos dois sentidos.',
+    'O item de preço é a pauta prática desta conversa. O resto é reconhecimento.'] },
+
+9: { tag:'acompanhar', chamada:'Volume consistente, mas comparecimento e receita em desalinho',
+  resumo:'132 sessões e processos longos (14,7 sessões por paciente), mas o comparecimento caiu de 95% em janeiro para 69% em junho e a receita não acompanha o esforço: <strong>R$ 2.700 para 132 sessões</strong>.',
+  fortes:['6º lugar em sessões realizadas entre 49 terapeutas.',
+    '14,7 sessões por paciente — processos dos mais longos da casa.',
+    '7 pacientes ativos hoje, acima da média da associação (3,8).',
+    '3 avaliações respondidas com nota média 9,7 de qualidade.'],
+  atencao:[{n:'grave', t:'<strong>Valor médio de sessão de R$ 55,71 — o mais baixo do grupo.</strong> Ela faz o 6º maior volume da casa e registra a 16ª receita. O esforço não está sendo remunerado.'},
+    {n:'grave', t:'<strong>Comparecimento em queda:</strong> 95% em janeiro, 87% em fevereiro, 69% em março e junho. As sessões marcadas continuam altas; as realizadas, não.'},
+    {n:'aviso', t:'4 quebras no semestre (taxa 44,4%), acima da mediana.'}],
+  perguntas:['Do começo para o fim do semestre, o número de faltas nos seus casos quase triplicou. Você percebeu isso? O que mudou?',
+    'O valor médio das suas sessões é o mais baixo do grupo. Vamos revisar caso a caso agora?',
+    'Tem paciente seu em atraso de pagamento? Como você costuma tratar isso?',
+    'Você acumula funções fora da clínica. Está sobrando tempo para os 9 casos?'],
+  privado:['<strong>Parecer aberto:</strong> "verificar inadimplência dos pacientes e aumentar o preço dos que estiverem abaixo de 100 reais" (13/09/2025). Ainda pendente — o valor médio hoje é R$ 55,71.',
+    'Ela mesma registrou que atende 9 casos <em>e</em> atua no setor de mídia <em>e</em> participa do cronograma A da formação. A queda de comparecimento pode ser efeito de agenda, não de vínculo.',
+    'Esta é a principal conversa de <strong>correção financeira</strong> do grupo. Se sair daqui só com os preços revistos, já valeu.'] },
+
+23: { tag:'reconhecer', chamada:'Volume alto, receita alta e vínculo firme',
+  resumo:'124 sessões, <strong>3ª maior receita da associação (R$ 7.678)</strong> e taxa de quebra de 22,2%, bem abaixo da mediana. Também tem um dos maiores valores médios de sessão da casa.',
+  fortes:['3º lugar em receita e 7º em sessões realizadas entre 49 terapeutas.',
+    'Apenas 2 quebras no semestre inteiro, ambas no mesmo dia (21/03).',
+    'Valor médio de sessão de R$ 189 — dos mais altos da casa, sinal de cadastro bem feito.',
+    'Produção estável de janeiro a maio, sem oscilação.'],
+  atencao:[{n:'aviso', t:'<strong>Comparecimento de 78,5%</strong> (35º/49), abaixo da mediana — e junho foi o pior mês: 17 realizadas de 28 marcadas (61%).'},
+    {n:'aviso', t:'<strong>Nenhuma das 9 avaliações geradas foi respondida.</strong> Não há nenhuma leitura do paciente sobre o trabalho dela.'},
+    {n:'info', t:'2 primeiras consultas no semestre — pouca entrada de caso novo.'}],
+  perguntas:['Junho foi o seu mês mais fraco em comparecimento (61%). Aconteceu alguma coisa específica?',
+    'Nenhum dos seus pacientes respondeu à avaliação. Você chega a comentar com eles que ela existe?',
+    'Como você está fazendo o combinado de falta com os pacientes novos?',
+    'Você tem espaço para receber caso novo no 2º semestre?'],
+  privado:['<strong>Havia um parecer</strong> (12/09/2025) pedindo verificar se ela registrava apenas as sessões realizadas. Pelo comparecimento de 78,5% deste semestre, <strong>parece corrigido</strong> — ela está lançando as faltas. Vale elogiar explicitamente: é exatamente o comportamento que a coordenação quer.',
+    'Cuidado para não ler o 78,5% como piora. Provavelmente é o contrário: o número ficou honesto.'] },
+
+41: { tag:'reconhecer', chamada:'Os processos mais profundos do grupo, com quase nenhuma perda',
+  resumo:'114 sessões em apenas 7 pacientes — <strong>16,3 sessões por paciente</strong>, o segundo maior aprofundamento do grupo — e só 2 quebras no semestre.',
+  fortes:['5º lugar da associação em sessões por paciente: os vínculos dela duram.',
+    'Apenas 2 quebras (taxa de 28,6%), abaixo da mediana de 33,3%.',
+    '8º lugar em sessões realizadas mesmo com a menor carteira entre os primeiros colocados.',
+    '4 primeiras consultas — recebeu casos novos e os manteve.'],
+  atencao:[{n:'aviso', t:'<strong>Junho foi fraco:</strong> 16 realizadas de 28 marcadas (57%), o pior mês dela no semestre.'},
+    {n:'aviso', t:'Comparecimento geral de 79,7%, abaixo da mediana da associação.'},
+    {n:'info', t:'7 pacientes atendidos é pouco em relação ao volume que ela produz — a produção vem da intensidade, não da largura da carteira.'}],
+  perguntas:['Junho destoou: 12 das 28 sessões marcadas não aconteceram. Você sabe o que houve?',
+    'Seus processos são dos mais longos da associação. Como você sustenta isso?',
+    'Você tem espaço e vontade de ampliar para mais casos, ou prefere manter a carteira concentrada?',
+    'Como está seu combinado de falta com os pacientes atuais?'],
+  privado:['Nenhuma observação aberta no cadastro dela.',
+    'É uma das pessoas com melhor relação esforço/resultado do grupo, e com pouca visibilidade. Uma conversa de reconhecimento explícito faz diferença aqui.'] },
+
+45: { tag:'prioridade', chamada:'Volume em queda contínua e o sinal de satisfação mais frágil do grupo',
+  resumo:'101 sessões no semestre, mas <strong>janeiro foi o pico e nunca mais se repetiu</strong> (−42% até junho). É também quem tem o indicador de satisfação mais preocupante entre os que têm base para medir.',
+  fortes:['10º lugar em sessões realizadas entre 49 terapeutas.',
+    '9 pacientes atendidos, acima da média da associação.',
+    '4 avaliações respondidas de 11 geradas — taxa de resposta acima da média da casa.'],
+  atencao:[{n:'grave', t:'<strong>Qualidade percebida de 8,25 com 4 respostas</strong> — a segunda mais baixa da associação, e com uma das maiores bases do grupo, o que dá peso ao número. Metade de quem respondeu indicou que <strong>não continuaria</strong> com a terapeuta.'},
+    {n:'grave', t:'<strong>Queda contínua:</strong> 24 sessões em janeiro, 14 em junho. Nenhum mês recuperou o patamar inicial.'},
+    {n:'aviso', t:'5 quebras (taxa de 55,6%), acima da mediana, sendo 3 registradas por ela — duas altas no mesmo dia (11/03).'},
+    {n:'aviso', t:'Comparecimento de 77,1% (38º/49).'}],
+  perguntas:['Do começo do ano para cá seu volume caiu quase pela metade. Como você entende isso?',
+    'Como você tem sentido a relação com os pacientes ultimamente? Tem algum caso em que sente que não está fluindo?',
+    'Você registrou duas altas no mesmo dia em março. Foram encerramentos planejados?',
+    'O que te ajudaria a retomar o ritmo do começo do ano — e você quer retomar?'],
+  privado:['<strong>Esta é uma das conversas mais delicadas da lista.</strong> O sinal não é volume: é que a satisfação dos pacientes dela é o ponto fora da curva do grupo, com base grande o suficiente para não ser acaso.',
+    '<strong>Não cite a nota 8,25 nem o "metade não continuaria" na conversa.</strong> Com 4 respostas, expor isso é injusto e improdutivo. Use como direção do que investigar, não como argumento.',
+    'Parecer aberto (12/09/2025): verificar financeiro dos pacientes — valor pago, registro no Hamilton e pagamentos atrasados.',
+    'Sugestão: abrir pela queda de volume, ouvir, e só então perguntar sobre a relação com os casos. Se aparecer desmotivação ou sobrecarga, isso explica os dois sinais de uma vez.'] },
+
+33: { tag:'reconhecer', chamada:'Agenda confiável e o acolhimento mais rápido da associação',
+  resumo:'98 sessões com <strong>95,2% de comparecimento</strong> e o menor tempo de espera até a primeira sessão da casa: <strong>1 dia</strong>. É a pessoa mais previsível do grupo em termos de agenda.',
+  fortes:['1º lugar da associação em rapidez de acolhimento: 1,0 dia entre cadastro e primeira sessão.',
+    '95,2% de comparecimento — de 103 sessões marcadas, apenas 5 não aconteceram.',
+    '9 pacientes atendidos, acima da média da casa.',
+    'Abril foi um mês excepcional: 33 sessões realizadas.'],
+  atencao:[{n:'aviso', t:'<strong>De janeiro a março, todas as sessões marcadas aparecem como realizadas.</strong> Isso costuma ser falta não lançada, não agenda perfeita. A partir de abril o registro passa a mostrar faltas — vale confirmar o que mudou.'},
+    {n:'aviso', t:'<strong>O valor de sessão cadastrado dela é R$ 443,33</strong>, mas a receita registrada dá R$ 40,82 por sessão. Um dos dois está errado.'},
+    {n:'aviso', t:'3 quebras, sendo duas no mesmo dia (01/06) — uma por desistência do paciente e uma registrada por ela.'},
+    {n:'info', t:'A nota de qualidade dela é 8,0, a menor do grupo — mas com <strong>uma única resposta</strong>. Não use.'}],
+  perguntas:['Nos três primeiros meses, todas as suas sessões aparecem como realizadas. Você estava lançando as faltas? O que mudou em abril?',
+    'O valor de sessão dos seus pacientes está cadastrado em R$ 443. Isso está certo? Vamos conferir agora.',
+    'Seu acolhimento é o mais rápido da casa. Como você organiza a agenda para conseguir isso?',
+    'O que aconteceu em abril, que teve o dobro de sessões dos outros meses?'],
+  privado:['Parecer de 12/09/2025 pedia verificar "os dados estranhos" do primeiro mês de estágio dela. O padrão de registro perfeito de jan a mar sugere que <strong>a questão de registro continua</strong>.',
+    'A conversa aqui é operacional e fácil: registro e cadastro de valor. O desempenho não é problema.'] },
+
+56: { tag:'acompanhar', chamada:'Comparecimento alto, mas sumiu do registro em junho',
+  resumo:'91 sessões com <strong>94,8% de comparecimento</strong>, um dos melhores da casa — mas fez um redimensionamento grande de carteira em março e <strong>registrou apenas 1 sessão em junho</strong>, depois de meses com 11 a 22.',
+  fortes:['94,8% de comparecimento: de 96 sessões marcadas, 91 aconteceram.',
+    '9 pacientes atendidos no semestre, acima da média da associação.',
+    '12º lugar em sessões realizadas entre 49 terapeutas.',
+    'Janeiro a abril com produção alta e estável (15 a 22 sessões por mês).'],
+  atencao:[{n:'grave', t:'<strong>Junho tem 1 sessão registrada e julho nenhuma</strong>, mas ela segue com 5 pacientes ativos no sistema. Ou parou de atender, ou parou de registrar — isso precisa ser esclarecido antes de qualquer outra coisa.'},
+    {n:'grave', t:'<strong>7 quebras (taxa de 77,8%)</strong>, com um padrão específico: em 10/03 registrou <strong>três solicitações de reencaminhamento no mesmo dia</strong>, todas por iniciativa dela, além de 3 altas e 1 "não responde" — todos também registrados por ela.'},
+    {n:'aviso', t:'Receita de R$ 1.187 para 91 sessões — baixa em relação ao volume.'}],
+  perguntas:['Como está sendo junho e julho para você? Não temos praticamente registro nesse período.',
+    'Você segue atendendo os 5 casos ativos? Eles estão no sistema com as sessões lançadas?',
+    'Em março você pediu reencaminhamento de três casos no mesmo dia. O que motivou essa decisão?',
+    'Precisa de alguma coisa da coordenação nesse momento?'],
+  privado:['<strong>Comece pelo sumiço de junho.</strong> Não é um detalhe de registro: são dois meses sem produção visível numa pessoa que vinha com 20 sessões/mês.',
+    'O parecer no cadastro dela diz "terapeuta regular, sem necessidade de conversar" (12/09/2025). Está <strong>desatualizado</strong> — ignore.',
+    'Os três reencaminhamentos no mesmo dia podem ser redimensionamento saudável de carteira ou sinal de sobrecarga. A taxa de 77,8% parece péssima no papel, mas o padrão (tudo por iniciativa dela) sugere decisão, não abandono. Confirme antes de tratar como problema.'] },
+
+71: { tag:'acompanhar', chamada:'Produção sólida até maio, junho sem registro',
+  resumo:'89 sessões e 7 pacientes ativos, com processos razoavelmente longos — mas, como no caso da Amanda, <strong>junho tem 1 sessão registrada</strong> depois de cinco meses entre 14 e 20.',
+  fortes:['7 pacientes ativos hoje, quase o dobro da média da associação (3,8).',
+    '12,7 sessões por paciente — vínculos que se sustentam.',
+    '14º lugar em sessões realizadas e 10º em receita entre 49 terapeutas.',
+    'Produção regular de janeiro a maio, sem mês fraco.'],
+  atencao:[{n:'grave', t:'<strong>Junho com 1 sessão registrada e julho nenhuma</strong>, mas com 7 pacientes ativos no sistema. Precisa ser esclarecido.'},
+    {n:'aviso', t:'<strong>Apenas 1 primeira consulta no semestre inteiro</strong> (29º/49) — praticamente não entrou caso novo.'},
+    {n:'aviso', t:'Comparecimento de 77,4% e 3 quebras (taxa 42,9%), ambos piores que a mediana.'},
+    {n:'info', t:'Uma das quebras (25/02) está sem tipo preenchido no sistema.'}],
+  perguntas:['O que aconteceu em junho? Praticamente não temos sessões suas registradas.',
+    'Você segue atendendo os 7 casos ativos?',
+    'Você recebeu só um caso novo no semestre. Isso foi escolha sua ou não chegaram encaminhamentos?',
+    'Um quarto das suas sessões marcadas não acontece. Como está o combinado de falta com seus pacientes?'],
+  privado:['O parecer no cadastro ("regular, não é necessário entrar em contato", 12/09/2025) está desatualizado.',
+    'Confirme em que ponto da formação ele está antes de comparar números — a régua para quem está começando não é a mesma.',
+    'Junho é o assunto principal. O resto pode esperar a próxima conversa.'] },
+
+75: { tag:'prioridade', chamada:'Carteira larga e receita alta convivendo com a pior retenção do grupo',
+  resumo:'11 pacientes atendidos (3ª maior carteira da casa) e R$ 5.315 de receita — mas <strong>8 quebras de vínculo, taxa de 72,7%</strong>, e quatro delas no mesmo dia, em 26/06.',
+  fortes:['3º lugar da associação em pacientes atendidos no semestre.',
+    '6ª maior receita registrada do semestre.',
+    '4 primeiras consultas — está recebendo e iniciando casos novos.',
+    'Produção estável de fevereiro a junho, entre 14 e 19 sessões por mês.'],
+  atencao:[{n:'grave', t:'<strong>8 quebras de vínculo — 46º de 49.</strong> Taxa de 72,7% contra mediana de 33,3%.'},
+    {n:'grave', t:'<strong>Quatro saídas no mesmo dia (26/06)</strong>, todas por iniciativa do paciente: três desistências e um "não responde". Quatro pacientes saindo simultaneamente não costuma ser coincidência.'},
+    {n:'grave', t:'<strong>7,9 sessões por paciente</strong> — bem abaixo da mediana (9,0) e o segundo menor do grupo entre quem tem carteira grande. Os vínculos começam e não engatam.'},
+    {n:'aviso', t:'Comparecimento de 78,4%, abaixo da mediana.'}],
+  perguntas:['No dia 26 de junho, quatro pacientes seus encerraram. Você consegue reconstruir o que aconteceu naquela semana?',
+    'Você atendeu 11 pessoas no semestre e cada uma ficou, em média, 8 sessões. Como você entende essa rotatividade?',
+    'Como está sendo feito o contrato terapêutico com os casos novos — combinado de falta, valor, frequência?',
+    'Em que momento você costuma perceber que um vínculo está esfriando? O que você faz nessa hora?',
+    'O que você precisa da coordenação para segurar melhor esses casos?'],
+  privado:['<strong>Esta é a conversa mais urgente da lista, junto com a do José Gabriel (10).</strong>',
+    'O ponto não é volume nem receita — os dois estão bons. É que a carteira gira: entram muitos, ficam poucos, e a saída é sempre por iniciativa do paciente.',
+    'Quatro encerramentos no mesmo dia merece verificação no sistema: pode ser um lote de registro atrasado, e não quatro saídas reais. <strong>Confirme isso antes da conversa</strong> — muda completamente o tom.',
+    'Ela entrou como estagiária em 25/09/2025, então tem menos de um ano de casa. Conduza como apoio, não como cobrança.'] },
+
+86: { tag:'reconhecer', chamada:'A melhor rampa de entrada do semestre',
+  resumo:'Entrou em <strong>março de 2026</strong> e em quatro meses já é a 8ª da associação inteira em sessões por mês, com 9 primeiras consultas e apenas 1 quebra. Cresceu mais rápido que qualquer outro entrante.',
+  fortes:['20,5 sessões por mês — 8º lugar entre 49 terapeutas, à frente de gente com o semestre completo.',
+    '2º lugar da associação em primeiras consultas (9) — está formando vínculos novos em ritmo alto.',
+    '8 pacientes ativos hoje, 4º lugar da casa, com quatro meses de atuação.',
+    'Apenas 1 quebra de vínculo no período (taxa de 11,1%, contra mediana de 33,3%).',
+    'Acolhimento em 1,7 dia — dos mais rápidos da associação.'],
+  atencao:[{n:'grave', t:'<strong>Comparecimento de 72,6%</strong> (42º/49): em maio realizou 30 de 45 marcadas e em junho 25 de 37. Está agendando bem mais do que consegue realizar.'},
+    {n:'aviso', t:'9,1 sessões por paciente — na média da casa, mas baixo para quem tem 8 casos ativos; os vínculos ainda são recentes.'},
+    {n:'info', t:'Crescimento muito rápido para quem entrou em março. O risco aqui é sobrecarga, não desempenho.'}],
+  perguntas:['Você entrou em março e já tem 8 casos ativos. Como está sendo esse ritmo?',
+    'Você marca cerca de 40 sessões por mês e realiza 25 a 30. O que costuma acontecer com as que caem?',
+    'Como você está fazendo o contrato inicial com os pacientes — combinado de falta, frequência?',
+    'O que você precisa da coordenação agora para sustentar isso sem se sobrecarregar?'],
+  privado:['<strong>Priorize suporte, não cobrança.</strong> Ela entrou há quatro meses e está com uma das maiores carteiras da casa — a taxa de falta é sintoma de crescimento rápido demais, não de descuido.',
+    'Se a coordenação estiver distribuindo casos novos, ela não deve ser o destino no momento.',
+    'É um bom caso para mostrar a ela mesma o gráfico: a rampa é visualmente impressionante e ela provavelmente não tem essa dimensão.'] },
+
+83: { tag:'reconhecer', chamada:'A maior formadora de vínculos novos da associação',
+  resumo:'Entrou em <strong>janeiro de 2026</strong> e fez <strong>11 primeiras consultas — o maior número da Allos no semestre</strong>. É também a única do grupo com base de avaliação de paciente sólida o suficiente para significar alguma coisa.',
+  fortes:['1º lugar da associação em primeiras consultas (11), com cinco meses de casa.',
+    '10 pacientes atendidos, 8º lugar entre 49 terapeutas.',
+    '<strong>7 avaliações respondidas de 20 geradas (35%, contra 14,7% de média)</strong>: nota 9,4 de qualidade e 85,7% dizendo que continuariam com ela. É a base de satisfação mais confiável do grupo.',
+    'Curva ascendente de fevereiro a maio: de 13 para 21 sessões realizadas.'],
+  atencao:[{n:'aviso', t:'<strong>6 quebras (taxa de 60%) — mas 5 delas concentradas em março</strong>, o segundo mês dela na casa. De abril em diante houve apenas uma (09/06).'},
+    {n:'aviso', t:'8,0 sessões por paciente, um pouco abaixo da mediana — efeito de carteira nova, com vários processos ainda no começo.'},
+    {n:'info', t:'Junho caiu (15 sessões contra 21 em maio), acompanhando a queda geral da associação.'}],
+  perguntas:['Em março você teve cinco encerramentos num mês só; de abril para cá, um. O que você mudou?',
+    'Você é quem mais recebeu casos novos na associação inteira neste semestre. Como está sendo esse volume de inícios?',
+    'Seus pacientes respondem à avaliação muito mais que a média. Como você faz esse convite?',
+    'O que você precisa para sustentar essa entrada de casos no 2º semestre?'],
+  privado:['<strong>Conte a história inteira.</strong> A taxa de quebra de 60% parece ruim isolada, mas a trajetória é de erro de manejo identificado e corrigido — e a correção aparece nos dados a partir de abril. Mostrar isso a ela é reforço poderoso.',
+    'Nenhuma observação aberta no cadastro dela.',
+    'Ela é a melhor fonte prática da casa sobre como conseguir resposta de avaliação de paciente — vale extrair e transformar em orientação.'] },
+
+10: { tag:'prioridade', chamada:'Colapso de volume desde abril e registro que não permite leitura',
+  resumo:'Fez 26 sessões em março e <strong>caiu para 5, 4 e 5 nos meses seguintes</strong> — uma queda de 80% que não foi revertida. E o registro dele mostra 100% de comparecimento em todos os meses, o que quase sempre significa falta não lançada.',
+  fortes:['6 pacientes ativos hoje, acima da média da associação.',
+    'R$ 4.380 de receita registrada — 7º lugar da casa — com valor médio de sessão de R$ 190, o mais alto entre os terapeutas de terapia semanal.',
+    'Fevereiro e março foram meses fortes: 22 e 26 sessões realizadas.'],
+  atencao:[{n:'grave', t:'<strong>Queda de 80% no volume a partir de abril</strong>, sustentada por três meses. Com 6 pacientes ativos, 5 sessões no mês significa menos de uma sessão por paciente.'},
+    {n:'grave', t:'<strong>100% de comparecimento em todos os meses</strong> — registradas iguais às realizadas, sempre. Isso indica que faltas não estão sendo lançadas, e invalida a leitura de todos os indicadores dele.'},
+    {n:'grave', t:'<strong>Zero primeiras consultas no semestre</strong> (36º/49). Não iniciou nenhum vínculo novo em seis meses.'}],
+  perguntas:['De março para abril seu volume caiu de 26 sessões para 5, e ficou assim. O que aconteceu?',
+    'Você tem 6 pacientes ativos, mas cerca de 5 sessões por mês no sistema. Os atendimentos estão acontecendo e não sendo lançados, ou a frequência mudou mesmo?',
+    'Quando um paciente falta, você registra a sessão como não realizada? Quer que eu mostre como fica no sistema?',
+    'Como está sua disponibilidade hoje? O que mudou na sua rotina desde abril?'],
+  privado:['<strong>Parecer aberto e grave:</strong> "conversar urgentemente: os dados sinalizam problemas clínicos e dificuldade de manejo pelo terapeuta" (12/09/2025, Diogo Varago). Continua pendente.',
+    '<strong>Somando o parecer, a queda de 80% e o sub-registro, esta é a conversa mais urgente da lista junto com a da Fernanda (75).</strong>',
+    'Antes de tratar de desempenho, resolva o registro: enquanto ele lançar só o que aconteceu, nenhum número dele é confiável — nem para o bem nem para o mal.',
+    'Não confronte com o parecer. Use-o para saber onde olhar.'] },
+
+65: { tag:'acompanhar', chamada:'Carteira larga com o comparecimento mais baixo entre os antigos',
+  resumo:'10 pacientes atendidos e 7 ativos hoje, mas <strong>70,8% de comparecimento — 44º de 49</strong> — e apenas 6,3 sessões por paciente. Os vínculos começam e não se aprofundam.',
+  fortes:['10 pacientes atendidos no semestre, 7º lugar entre 49 terapeutas.',
+    '5 primeiras consultas — está recebendo e iniciando casos.',
+    'Acolhimento em 1 dia, o 2º mais rápido da associação.',
+    'Volume estável, sem mês de colapso.'],
+  atencao:[{n:'grave', t:'<strong>Comparecimento de 70,8%</strong> — quase 30% das sessões marcadas não acontecem, todos os meses, de forma consistente. Não é piora recente: é um patamar.'},
+    {n:'grave', t:'<strong>6,3 sessões por paciente</strong> (31º/49) contra mediana de 9,0. Ela recebe muita gente e cada uma fica pouco.'},
+    {n:'aviso', t:'6 quebras (taxa de 60%), quatro delas concentradas entre março e abril.'},
+    {n:'aviso', t:'Receita de R$ 1.150 para 63 sessões, com valor médio de R$ 100 — a segunda menor do grupo.'},
+    {n:'info', t:'Uma quebra (07/04) está registrada sem tipo, cancelador nem momento.'}],
+  perguntas:['Três em cada dez sessões suas não acontecem, e isso é estável há meses. Como você vê isso?',
+    'Seus pacientes ficam em média 6 sessões, menos que a maioria. Em que ponto você sente que eles saem?',
+    'Como está o combinado de falta com eles? Existe alguma consequência acordada?',
+    'Como você está se sentindo em relação ao trabalho clínico neste momento?',
+    'Seus valores de sessão estão todos em R$ 100. Faz sentido revisar algum?'],
+  privado:['O padrão de ~70% de comparecimento vem desde 2025 — não é queda recente, é o jeito como a agenda dela funciona. Tratar como "o que mudou?" vai dar em nada; a pergunta certa é "o que faz isso ser assim?".',
+    'Parecer no cadastro: "terapeuta regular. Apenas revisar quantidade de casos no contrato de estágio" (12/09/2025).',
+    'A combinação de comparecimento baixo, processos curtos e receita baixa aponta para engajamento, não para capacidade. Vale abrir espaço para ela falar de motivação e rotina.'] },
+
+84: { tag:'acompanhar', chamada:'Entra bem, mas tem dificuldade em sustentar a agenda',
+  resumo:'Entrou em <strong>fevereiro de 2026</strong> e já fez 6 primeiras consultas com apenas 2 quebras — forma vínculo bem. Mas o comparecimento é de <strong>69,6%, o segundo pior do grupo</strong>, e o volume vem caindo desde abril.',
+  fortes:['6 primeiras consultas em cinco meses de casa — 6º lugar da associação.',
+    'Apenas 2 quebras de vínculo (taxa de 28,6%), abaixo da mediana.',
+    '5 pacientes ativos hoje, acima da média da associação.',
+    'Abril foi um bom mês: 17 sessões realizadas.'],
+  atencao:[{n:'grave', t:'<strong>Comparecimento de 69,6%</strong> (45º/49): três em cada dez sessões marcadas não acontecem.'},
+    {n:'grave', t:'<strong>Queda desde abril:</strong> 17 sessões em abril, 10 em maio, 7 em junho. A curva é descendente há três meses.'},
+    {n:'aviso', t:'6,9 sessões por paciente, abaixo da mediana — os vínculos ainda são curtos.'},
+    {n:'info', t:'Nenhuma das 8 avaliações geradas foi respondida.'}],
+  perguntas:['Seu volume vem caindo desde abril: 17, 10, 7 sessões. Como está sua rotina hoje?',
+    'Três em cada dez sessões marcadas não acontecem. Isso é falta do paciente, remarcação sua, ou os dois?',
+    'Você inicia bem os casos — 6 primeiras consultas em cinco meses. O que fica difícil depois do começo?',
+    'O que você precisa organizar para conseguir uma agenda mais previsível no 2º semestre?'],
+  privado:['O padrão dele é de <strong>disponibilidade</strong>, não de capacidade: ele capta e mantém os vínculos (só 2 quebras), mas a frequência das sessões não se sustenta.',
+    'Nenhuma observação aberta no cadastro.',
+    'Se ele acumular outras funções ou estiver em período de prova/estágio externo, isso explica a curva. Vale perguntar diretamente sobre a rotina antes de falar de números.'] },
+
+85: { tag:'prioridade', chamada:'Forma muitos vínculos, mas metade das sessões não acontece',
+  resumo:'Entrou em <strong>fevereiro de 2026</strong> e já fez 8 primeiras consultas — 3º lugar da associação. Mas <strong>o comparecimento é de 51,9%, o pior do grupo</strong> e o penúltimo da casa: menos da metade das sessões marcadas acontece.',
+  fortes:['8 primeiras consultas em quatro meses — 3º lugar da associação inteira.',
+    'Apenas 2 quebras de vínculo (taxa de 25%), abaixo da mediana.',
+    'Junho foi de longe o melhor mês: 13 sessões realizadas contra 4 em maio.',
+    '5 pacientes ativos hoje.'],
+  atencao:[{n:'grave', t:'<strong>Comparecimento de 51,9%</strong> — 48º de 49. Em maio foram 4 sessões realizadas de 14 marcadas (29%).'},
+    {n:'grave', t:'<strong>3,5 sessões por paciente</strong> — o menor do grupo entre quem tem carteira. Os vínculos que ela forma não estão virando processo continuado.'},
+    {n:'aviso', t:'Receita de R$ 524 no semestre, com valor médio de sessão de R$ 80.'},
+    {n:'info', t:'Nenhuma das 11 avaliações geradas foi respondida — não há nenhuma leitura do paciente sobre o trabalho dela.'}],
+  perguntas:['Metade das sessões que você marca não acontece. Você sabe o que costuma acontecer?',
+    'Como está sendo combinado o horário com os pacientes? Eles confirmam antes?',
+    'Você inicia muitos casos — 8 no semestre — mas cada um fica em média 3 ou 4 sessões. O que acontece entre a primeira e a quarta?',
+    'Existe um contrato terapêutico combinado com eles, com política de falta e valor?',
+    'O que você precisa da coordenação para firmar esses vínculos?'],
+  privado:['<strong>É o maior risco de evasão de pacientes do grupo</strong> — e o caso sobre o qual a base tem menos informação: nenhuma avaliação respondida.',
+    'A primeira providência prática é o contrato terapêutico e a política de faltas. Se metade das sessões cai, o combinado inicial provavelmente não está sendo feito ou não está sendo sustentado.',
+    'Nenhuma observação no cadastro. Ela entrou em fevereiro — conduza como formação, não como cobrança, mas trate o número: 52% é grave para os pacientes, não só para o indicador.'] },
+
+91: { tag:'acompanhar', chamada:'Entrou em maio e está entrando bem',
+  resumo:'Dois meses de casa e já tem <strong>7 pacientes ativos</strong> — 10º lugar da associação inteira — com 6 primeiras consultas e uma quebra. <strong>Ainda não há dado suficiente para avaliar desempenho.</strong>',
+  fortes:['7 pacientes ativos hoje, quase o dobro da média da associação, com dois meses de casa.',
+    '6 primeiras consultas em dois meses — recebeu e iniciou casos rapidamente.',
+    'Apenas 1 quebra de vínculo até agora.',
+    'Junho já foi um mês real: 9 sessões realizadas de 11 marcadas (82%).'],
+  atencao:[{n:'info', t:'<strong>Com 12 sessões realizadas, nenhum indicador dele é utilizável ainda.</strong> Qualquer ranking envolvendo ele é ruído. A próxima leitura útil é ao fim do 2º semestre.'},
+    {n:'aviso', t:'Tempo até a primeira sessão de 7,8 dias (20º de 22) — vale acompanhar, pode ser só efeito de entrada.'}],
+  perguntas:['Como está sendo a entrada? O que te surpreendeu até agora?',
+    'Você recebeu 7 casos rápido. Está confortável com esse volume ou foi rápido demais?',
+    'Está conseguindo registrar tudo no Hamilton? Alguma dúvida sobre o sistema?',
+    'O que te ajudaria agora — supervisão, apoio com contrato, orientação sobre valores?'],
+  privado:['<strong>Conversa de acolhimento, não de avaliação.</strong> Não leve rankings para essa conversa: ele aparece em 37º e 43º lugar em várias métricas simplesmente porque tem dois meses de casa.',
+    'Nenhuma observação no cadastro.',
+    'Combine com ele uma revisão em três meses, quando os números começarem a significar algo.'] },
+
+87: { tag:'neutro', chamada:'Avaliação neuropsicológica — não comparável com o resto do guia',
+  resumo:'Entrou em <strong>março de 2026</strong> e trabalha com <strong>avaliação neuropsicológica</strong>, não com terapia semanal. <strong>Volume, sessões por paciente e taxa de quebra não significam a mesma coisa para ela</strong> — a comparação com o resto do guia não se aplica.',
+  fortes:['5 pacientes ativos hoje.',
+    '4 primeiras consultas em dois meses — está iniciando processos.',
+    'R$ 3.000 registrados, com valor de processo cadastrado em R$ 1.000 (compatível com avaliação, não com sessão semanal).'],
+  atencao:[{n:'info', t:'<strong>As 4 sessões realizadas não medem produtividade.</strong> Avaliação neuropsicológica é um processo com poucos encontros e entrega documental, não um atendimento semanal contínuo.'},
+    {n:'info', t:'<strong>As 2 "quebras" registradas são altas dadas por ela.</strong> Em avaliação, alta é o desfecho normal do processo — não é perda de vínculo.'},
+    {n:'aviso', t:'O Hamilton não tem hoje uma forma adequada de medir o trabalho dela. Isso é uma limitação do sistema, não dela.'}],
+  perguntas:['Como você mediria o seu trabalho? Que indicadores fariam sentido para avaliação neuropsicológica?',
+    'O sistema está dando conta de registrar o seu processo — sessões de testagem, devolutiva, laudo?',
+    'Quantos processos você consegue conduzir em paralelo?',
+    'O que falta no Hamilton para o seu trabalho ficar visível?'],
+  privado:['<strong>Não use nenhum número comparativo com ela.</strong> Ela aparece em 42º e 43º lugar em volume simplesmente porque volume não é a unidade de trabalho dela.',
+    'A pauta útil aqui é o contrário do resto do guia: <strong>o que a coordenação precisa levar à diretoria</strong> para que o sistema consiga registrar e medir avaliação neuropsicológica.',
+    'Nenhuma observação no cadastro.'] },
+};
+
+/* ==========================================================  helpers  === */
+const nf = (v, c=0) => v === null || v === undefined ? '—'
+  : v.toLocaleString('pt-BR', {minimumFractionDigits:c, maximumFractionDigits:c});
+const money = v => 'R$ ' + nf(v, 2);
+const MESNOME = {'01':'jan','02':'fev','03':'mar','04':'abr','05':'mai','06':'jun'};
+const TAGNOME = {reconhecer:'Reconhecer', acompanhar:'Acompanhar',
+                 prioridade:'Prioridade', neutro:'Caso à parte'};
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function cmp(valor, mediana, maiorMelhor) {
+  if (valor === null || mediana === null) return '';
+  const dif = valor - mediana;
+  if (Math.abs(dif) < 1e-9) return '<span class="cmp cmp-igual">na mediana</span>';
+  const bom = maiorMelhor ? dif > 0 : dif < 0;
+  const seta = dif > 0 ? '↑' : '↓';
+  const palavra = dif > 0 ? 'acima' : 'abaixo';
+  return `<span class="cmp ${bom ? 'cmp-bom' : 'cmp-ruim'}">${seta} ${palavra} da mediana</span>`;
+}
+
+function kpi(rot, val, ref, comparacao) {
+  return `<div class="kpi"><div class="rot">${rot}</div><div class="val">${val}</div>
+    <div class="ref">${ref}</div>${comparacao || ''}</div>`;
+}
+
+function rank(t, campo) {
+  const p = t.ranks[campo];
+  return p ? `${p}º de ${t.n_rank}` : '';
+}
+
+/* ==========================================================  régua  ==== */
+document.getElementById('regua').innerHTML = [
+  ['2.693', 'sessões realizadas na associação<br>de 3.235 marcadas (83,2%)'],
+  ['55,0', 'média de sessões por terapeuta<br>mediana 36'],
+  ['9,0', 'mediana de sessões por mês<br>por terapeuta'],
+  ['85,7%', 'mediana de comparecimento'],
+  ['33,3%', 'mediana da taxa de quebra<br>de vínculo'],
+  ['3,4 dias', 'mediana até a 1ª sessão'],
+  ['134', 'quebras de vínculo no semestre<br>só 18% foram alta'],
+  ['49', 'terapeutas com atendimento<br>de 84 cadastrados'],
+].map(([v, r]) => `<div><span class="v">${v}</span><span class="r">${r}</span></div>`).join('');
+
+/* ==========================================================  nav  ====== */
+function atualizarNav() {
+  document.getElementById('nav').innerHTML = DADOS.map(t => {
+    const x = txt(t.id);
+    return `<a class="nav-item" href="#t${t.id}">
+      <span class="l1"><span class="nm">${esc(t.nome.split(' ').slice(0,2).join(' '))}</span>
+      <span class="nb">${t.consultas_realizadas} sessões</span></span>
+      <span class="selo selo-${x.tag}"><i class="pt"></i>${TAGNOME[x.tag]}</span></a>`;
+  }).join('');
+}
+
+/* ==========================================================  gráfico  == */
+function grafico(t) {
+  const max = Math.max(...t.mensal.map(m => m.reg), 1);
+  const H = 148;
+  const cols = t.mensal.map(m => {
+    if (!m.reg) return `<div class="col vazio" data-tip="${MESNOME[m.m]}/26 — sem registro"></div>`;
+    const hTot = Math.max(3, Math.round(m.reg / max * H));
+    const hReal = Math.round(m.real / m.reg * hTot);
+    const hFalta = hTot - hReal;
+    const pct = (m.real / m.reg * 100).toFixed(0);
+    return `<div class="col" data-tip="${MESNOME[m.m]}/26 — ${m.real} de ${m.reg} sessões realizadas (${pct}%)">
+      <span class="num">${m.real}</span>
+      ${hFalta > 0 ? `<div class="seg-falta" style="height:${hFalta}px"></div>` : ''}
+      <div class="seg-real" style="height:${hReal}px"></div></div>`;
+  }).join('');
+  const linhas = t.mensal.map(m => `<tr><td>${MESNOME[m.m]}/26</td><td>${m.reg || '—'}</td>
+    <td>${m.reg ? m.real : '—'}</td>
+    <td>${m.reg ? (m.real / m.reg * 100).toFixed(0) + '%' : '—'}</td></tr>`).join('');
+  return `<div class="gr">
+    <div class="gr-top"><span class="gr-tit">Sessões mês a mês</span>
+      <span class="legenda">
+        <span><i style="background:var(--series-1)"></i>realizadas</span>
+        <span><i style="background:var(--grid)"></i>marcadas que não aconteceram</span>
+      </span></div>
+    <div class="barras">${cols}</div>
+    <div class="eixo">${t.mensal.map(m => `<span>${MESNOME[m.m]}</span>`).join('')}</div>
+    <details><summary>ver os números</summary>
+      <table><thead><tr><th>Mês</th><th>Marcadas</th><th>Realizadas</th><th>%</th></tr></thead>
+      <tbody>${linhas}</tbody></table></details>
+  </div>`;
+}
+
+/* ==========================================================  quebras  == */
+function tabelaQuebras(t) {
+  if (!t.quebras_det.length) return '';
+  const linhas = t.quebras_det.map(q => {
+    const d = q.data.split('-');
+    return `<tr><td>${d[2]}/${d[1]}</td><td>${esc(q.tipo || 'não preenchido')}</td>
+      <td>${esc(q.cancelador || '—')}</td><td>${esc(q.momento || '—')}</td></tr>`;
+  }).join('');
+  const n = t.quebras_det.length;
+  return `<details style="margin-bottom:18px"><summary style="font-size:13px;color:var(--ink-2);cursor:pointer">
+    ${n === 1 ? 'ver a quebra de vínculo do semestre'
+              : `ver as ${n} quebras de vínculo do semestre`}</summary>
+    <table><thead><tr><th>Data</th><th>Tipo</th><th>Registrada por</th><th>Momento</th></tr></thead>
+    <tbody>${linhas}</tbody></table></details>`;
+}
+
+/* ====================================================  modelo editável === */
+const CHAVE = 'allos-guia-conversas-2026s1';
+const VAZIO = () => ({ meta: {}, t: {} });
+let EDICOES = VAZIO();
+let origemEdicoes = 'original';
+
+function lerEmbutidas() {
+  try {
+    const el = document.getElementById('edicoes');
+    const v = JSON.parse(el.textContent.trim());
+    return v && v.t ? v : null;
+  } catch (e) { return null; }
+}
+function lerLocais() {
+  try {
+    const v = JSON.parse(localStorage.getItem(CHAVE) || 'null');
+    return v && v.t ? v : null;
+  } catch (e) { return null; }
+}
+(function carregar() {
+  const emb = lerEmbutidas(), loc = lerLocais();
+  if (emb && loc) {
+    const usaLoc = (loc.meta.atualizado || '') >= (emb.meta.atualizado || '');
+    EDICOES = usaLoc ? loc : emb;
+    origemEdicoes = usaLoc ? 'local-sobre-arquivo' : 'arquivo';
+    if (usaLoc) window.__edicoesArquivo = emb;
+  } else if (loc) { EDICOES = loc; origemEdicoes = 'local'; }
+  else if (emb) { EDICOES = emb; origemEdicoes = 'arquivo'; }
+})();
+
+/** Texto vigente de um terapeuta: original sobreposto pelas edições. */
+function txt(id) {
+  const base = TEXTOS[id];
+  const e = EDICOES.t[id] || {};
+  return {
+    tag: e.tag || base.tag,
+    chamada: e.chamada !== undefined ? e.chamada : base.chamada,
+    resumo: e.resumo !== undefined ? e.resumo : base.resumo,
+    fortes: e.fortes || base.fortes,
+    atencao: e.atencao || base.atencao,
+    perguntas: e.perguntas || base.perguntas,
+    privado: e.privado || base.privado,
+    combinados: e.combinados || '',
+    revisao: e.revisao || { feito: false, com: '', data: '' },
+  };
+}
+function editado(id) { return !!EDICOES.t[id]; }
+
+let salvarTimer = null;
+function salvar(imediato) {
+  clearTimeout(salvarTimer);
+  const grava = () => {
+    EDICOES.meta.atualizado = new Date().toISOString();
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify(EDICOES));
+      const h = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+      status(`salvo às ${h}`);
+    } catch (err) {
+      status('não consegui salvar neste navegador — use Arquivo → Salvar cópia', true);
+    }
+  };
+  imediato ? grava() : (salvarTimer = setTimeout(grava, 600));
+}
+function status(msg, alerta) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.style.color = alerta ? 'var(--critical)' : 'var(--muted)';
+}
+
+/** Relê tudo o que está no DOM da seção e guarda em EDICOES. */
+function sincronizar(id) {
+  const sec = document.getElementById('t' + id);
+  if (!sec) return;
+  const q = s => sec.querySelector(s);
+  const lista = nome => [...sec.querySelectorAll(`[data-list="${nome}"] > li`)]
+    .map(li => li.querySelector('.txt').innerHTML.trim())
+    .filter(v => v !== '');
+  EDICOES.t[id] = {
+    tag: q('[data-edit="tag"]').value,
+    chamada: q('[data-edit="chamada"]').innerHTML.trim(),
+    resumo: q('[data-edit="resumo"]').innerHTML.trim(),
+    fortes: lista('fortes'),
+    atencao: [...sec.querySelectorAll('[data-list="atencao"] > li')]
+      .map(li => ({ n: li.dataset.nivel, t: li.querySelector('.txt').innerHTML.trim() }))
+      .filter(a => a.t !== ''),
+    perguntas: lista('perguntas'),
+    privado: lista('privado'),
+    combinados: q('[data-edit="combinados"]').innerHTML.trim(),
+    revisao: {
+      feito: q('[data-edit="revfeito"]').checked,
+      com: q('[data-edit="revcom"]').value.trim(),
+      data: q('[data-edit="revdata"]').value.trim(),
+    },
+  };
+  sec.classList.toggle('revisado', EDICOES.t[id].revisao.feito);
+  salvar();
+}
+
+/* ==========================================================  seções  === */
+const NIVEIS = ['grave', 'aviso', 'info'];
+const NIVELNOME = { grave: 'grave', aviso: 'atenção', info: 'nota' };
+
+function itemLista(html) {
+  return `<li><span class="txt" contenteditable="false">${html}</span>` +
+    `<button class="btn-mini rm ed" title="remover este item">remover</button></li>`;
+}
+function itemAtencao(a) {
+  const n = NIVEIS.includes(a.n) ? a.n : 'aviso';
+  return `<li class="${n === 'aviso' ? '' : n}" data-nivel="${n}">` +
+    `<button class="btn-mini niv ed" title="mudar o peso deste ponto">${NIVELNOME[n]}</button>` +
+    `<span class="txt" contenteditable="false">${a.t}</span>` +
+    `<button class="btn-mini rm ed" title="remover este item">remover</button></li>`;
+}
+
+document.getElementById('terapeutas').innerHTML = DADOS.map(t => {
+  const x = txt(t.id);
+  const B = BASELINE;
+  const desde = t.desde.split('-');
+  const entrou = `${MESNOME[desde[1]] || desde[1]}/${desde[0].slice(2)}`;
+
+  const aval = t.avaliacoes_respondidas
+    ? `${nf(t.aval_qualidade_geral, 1)}<span class="un"> /10</span>`
+    : '<span class="un">sem resposta</span>';
+  const avalRef = t.avaliacoes_respondidas
+    ? `${t.avaliacoes_respondidas} de ${t.avaliacoes_geradas} respondidas`
+    : `0 de ${t.avaliacoes_geradas} geradas`;
+
+  const kpis = [
+    kpi('Sessões realizadas', nf(t.consultas_realizadas),
+        `de ${nf(t.consultas_registradas)} marcadas · ${rank(t, 'consultas_realizadas')}`,
+        cmp(t.consultas_realizadas, B.consultas_realizadas.mediana, true)),
+    kpi('Sessões por mês', nf(t.sessoes_por_mes, 1),
+        `em ${t.meses_ativos} ${t.meses_ativos === 1 ? 'mês' : 'meses'} · ${rank(t, 'sessoes_por_mes')}`,
+        cmp(t.sessoes_por_mes, B.sessoes_por_mes.mediana, true)),
+    kpi('Comparecimento', nf(t.pct_realizacao, 1) + '<span class="un">%</span>',
+        `mediana da casa 85,7% · ${rank(t, 'pct_realizacao')}`,
+        cmp(t.pct_realizacao, B.pct_realizacao.mediana, true)),
+    kpi('Pacientes ativos hoje', nf(t.pacientes_ativos_hoje),
+        `${t.pacientes_atendidos} atendidos no semestre · ${rank(t, 'pacientes_ativos_hoje')}`,
+        cmp(t.pacientes_ativos_hoje, B.pacientes_ativos_hoje.mediana, true)),
+    kpi('Sessões por paciente', nf(t.sessoes_por_paciente, 1),
+        `mediana da casa 9,0 · ${rank(t, 'sessoes_por_paciente')}`,
+        cmp(t.sessoes_por_paciente, B.sessoes_por_paciente.mediana, true)),
+    kpi('Quebras de vínculo', nf(t.quebras),
+        `taxa ${nf(t.taxa_quebra, 1)}% · mediana 33,3%`,
+        cmp(t.taxa_quebra, B.taxa_quebra.mediana, false)),
+    kpi('Primeiras consultas', nf(t.primeiras_consultas),
+        `vínculos novos · ${rank(t, 'primeiras_consultas')}`,
+        cmp(t.primeiras_consultas, B.primeiras_consultas.mediana, true)),
+    kpi('Até a 1ª sessão',
+        t.tempo_medio_espera_dias === null ? '<span class="un">sem base</span>'
+          : nf(t.tempo_medio_espera_dias, 1) + '<span class="un"> dias</span>',
+        t.n_base_espera ? `base de ${t.n_base_espera} paciente${t.n_base_espera > 1 ? 's' : ''} · mediana 3,4 d`
+          : 'nenhum caso novo elegível',
+        t.tempo_medio_espera_dias === null ? ''
+          : cmp(t.tempo_medio_espera_dias, B.tempo_medio_espera_dias.mediana, false)),
+    kpi('Receita registrada', money(t.receita),
+        `valor médio de sessão ${money(t.vlr_sessao_medio)} · ${rank(t, 'receita')}`, ''),
+    kpi('Satisfação do paciente', aval, avalRef,
+        t.avaliacoes_respondidas < 3
+          ? '<span class="cmp cmp-igual">base pequena — não usar</span>' : ''),
+  ].join('');
+
+  const fortes = x.fortes.map(itemLista).join('');
+  const atencao = x.atencao.map(itemAtencao).join('');
+  const perguntas = x.perguntas.map(itemLista).join('');
+  const privados = x.privado.map(itemLista).join('');
+  const obs = t.obs_cadastro
+    ? `<blockquote>${esc(t.obs_cadastro)}</blockquote>` : '';
+  const opcoesTag = Object.keys(TAGNOME).map(k =>
+    `<option value="${k}"${k === x.tag ? ' selected' : ''}>${TAGNOME[k]}</option>`).join('');
+
+  return `<div class="card terapeuta${x.revisao.feito ? ' revisado' : ''}" id="t${t.id}"
+               data-tid="${t.id}">
+    <div class="t-topo">
+      <div class="t-id">#${t.id}</div>
+      <div style="flex:1 1 240px">
+        <h2>${esc(t.nome)}</h2>
+        <div class="t-meta">${esc(t.nucleo)} · na Allos desde ${entrou} ·
+          ${t.meses_ativos} ${t.meses_ativos === 1 ? 'mês' : 'meses'} com registro no semestre</div>
+      </div>
+      <span class="selo selo-revisado"><i class="pt"></i>revisado</span>
+      <span class="selo selo-${x.tag} selo-tag"><i class="pt"></i>${TAGNOME[x.tag]}</span>
+      <select class="btn-mini ed" data-edit="tag" title="mudar a prioridade desta conversa"
+              style="padding:5px 7px">${opcoesTag}</select>
+      <a class="topo-link" href="#topo"
+         onclick="window.scrollTo({top:0});return false">↑ topo</a>
+    </div>
+
+    <p class="t-resumo"><strong data-edit="chamada" contenteditable="false">${x.chamada}</strong>.
+      <span data-edit="resumo" contenteditable="false">${x.resumo}</span></p>
+
+    <div class="kpis">${kpis}</div>
+
+    ${grafico(t)}
+    ${tabelaQuebras(t)}
+
+    <div class="duas">
+      <div class="bloco"><h3>Para reconhecer e mostrar</h3>
+        <ul class="lista forte" data-list="fortes">${fortes}</ul>
+        <button class="btn-mini ed add-linha" data-add="fortes">+ acrescentar ponto</button></div>
+      <div class="bloco"><h3>Pontos de atenção</h3>
+        <ul class="lista aten" data-list="atencao">${atencao}</ul>
+        <button class="btn-mini ed add-linha" data-add="atencao">+ acrescentar ponto</button></div>
+    </div>
+
+    <div class="bloco"><h3>Perguntas para a conversa</h3>
+      <ol class="perg" data-list="perguntas">${perguntas}</ol>
+      <button class="btn-mini ed add-linha" data-add="perguntas">+ acrescentar pergunta</button></div>
+
+    <div class="privado">
+      <h3>Só para você — não mostrar na conversa</h3>
+      <p class="aviso">Contexto de coordenação. Some no <strong>modo apresentação</strong>.</p>
+      <ul class="lista" data-list="privado">${privados}</ul>
+      <button class="btn-mini ed add-linha" data-add="privado">+ acrescentar nota</button>
+      ${obs ? `<p class="aviso" style="margin:12px 0 0"><strong>Do cadastro do Hamilton</strong>
+        (registro do sistema, não editável aqui):</p>${obs}` : ''}
+    </div>
+
+    <div class="anota"><h3>Combinados desta conversa</h3>
+      <div class="combinados" data-edit="combinados" contenteditable="true"
+           data-vazio="O que ficou combinado, prazos, o que você vai verificar…">${x.combinados}</div>
+      <div class="revisao">
+        <label><input type="checkbox" data-edit="revfeito"${x.revisao.feito ? ' checked' : ''}>
+          alinhado com a supervisão</label>
+        <input type="text" class="sup" data-edit="revcom" placeholder="com quem"
+               value="${esc(x.revisao.com)}">
+        <input type="text" class="dt" data-edit="revdata" placeholder="data"
+               value="${esc(x.revisao.data)}">
+        <button class="btn-mini ed" data-restaurar="${t.id}"
+                title="volta esta seção ao texto original">restaurar original</button>
+      </div>
+    </div>
+  </div>`;
+}).join('');
+
+/* ==========================================================  edição  ==== */
+const EDITAVEIS = '[data-edit="chamada"],[data-edit="resumo"],.txt';
+
+function modoEdicao(ligar) {
+  document.body.classList.toggle('editando', ligar);
+  document.querySelectorAll(EDITAVEIS).forEach(el => el.contentEditable = ligar ? 'true' : 'false');
+  const b = document.getElementById('btn-editar');
+  b.setAttribute('aria-pressed', ligar);
+  b.textContent = ligar ? 'Modo edição: ligado' : 'Modo edição';
+  if (ligar && document.body.classList.contains('apresentacao')) alternarApresentacao(false);
+  status(ligar ? 'edite qualquer texto destacado' : '');
+}
+
+function tid(el) { return el.closest('.card.terapeuta')?.dataset.tid; }
+
+/* digitação nos textos */
+document.addEventListener('input', e => {
+  const sec = e.target.closest('.card.terapeuta');
+  if (!sec) return;
+  if (e.target.matches(EDITAVEIS + ',[data-edit="combinados"],[data-edit="revcom"],[data-edit="revdata"]'))
+    sincronizar(sec.dataset.tid);
+});
+document.addEventListener('change', e => {
+  const sec = e.target.closest('.card.terapeuta');
+  if (!sec) return;
+  if (e.target.matches('[data-edit="tag"]')) {
+    const v = e.target.value;
+    const selo = sec.querySelector('.selo-tag');
+    selo.className = `selo selo-${v} selo-tag`;
+    selo.innerHTML = `<i class="pt"></i>${TAGNOME[v]}`;
+    sincronizar(sec.dataset.tid);
+    atualizarNav();
+    return;
+  }
+  if (e.target.matches('[data-edit]')) sincronizar(sec.dataset.tid);
+});
+
+/* colar sem formatação alheia */
+document.addEventListener('paste', e => {
+  if (!e.target.closest || !e.target.matches(EDITAVEIS + ',[data-edit="combinados"]')) return;
+  e.preventDefault();
+  const texto = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, texto);
+});
+
+/* botões dentro das seções */
+document.addEventListener('click', e => {
+  const rm = e.target.closest('.btn-mini.rm');
+  if (rm) { const id = tid(rm); rm.closest('li').remove(); sincronizar(id); return; }
+
+  const niv = e.target.closest('.btn-mini.niv');
+  if (niv) {
+    const li = niv.closest('li');
+    const prox = NIVEIS[(NIVEIS.indexOf(li.dataset.nivel) + 1) % NIVEIS.length];
+    li.dataset.nivel = prox;
+    li.className = prox === 'aviso' ? '' : prox;
+    niv.textContent = NIVELNOME[prox];
+    sincronizar(tid(li));
+    return;
+  }
+
+  const add = e.target.closest('[data-add]');
+  if (add) {
+    const nome = add.dataset.add;
+    const ul = add.closest('.bloco, .privado').querySelector(`[data-list="${nome}"]`);
+    ul.insertAdjacentHTML('beforeend',
+      nome === 'atencao' ? itemAtencao({ n: 'aviso', t: 'Escreva aqui…' })
+                         : itemLista('Escreva aqui…'));
+    const novo = ul.lastElementChild.querySelector('.txt');
+    novo.contentEditable = 'true';
+    novo.focus();
+    document.getSelection().selectAllChildren(novo);
+    sincronizar(tid(add));
+    return;
+  }
+
+  const rest = e.target.closest('[data-restaurar]');
+  if (rest) {
+    const id = rest.dataset.restaurar;
+    if (!confirm('Voltar esta seção ao texto original? Os combinados anotados também serão apagados.'))
+      return;
+    delete EDICOES.t[id];
+    salvar(true);
+    location.reload();
+  }
+});
+
+/* ==========================================================  arquivo  === */
+function baixar(nome, conteudo, tipo) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([conteudo], { type: tipo }));
+  a.download = nome;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+const hoje = () => new Date().toISOString().slice(0, 10);
+
+function salvarHtml() {
+  salvar(true);
+  const json = JSON.stringify(EDICOES).replace(/</g, '\\u003c');
+  const novo = HTML_BASE.replace(
+    /(<script id="edicoes" type="application\/json">)[\s\S]*?(<\/script>)/,
+    (m, a, b) => a + json + b);
+  if (novo === HTML_BASE) {
+    alert('Não consegui embutir as edições no arquivo. Use "Exportar só as edições (JSON)".');
+    return;
+  }
+  baixar(`guia-conversas-terapeutas-${hoje()}.html`, novo, 'text/html;charset=utf-8');
+  status('cópia gerada — está na sua pasta de downloads');
+}
+
+function exportarJson() {
+  salvar(true);
+  baixar(`edicoes-guia-conversas-${hoje()}.json`,
+    JSON.stringify(EDICOES, null, 1), 'application/json');
+}
+
+document.getElementById('arquivo-json').addEventListener('change', ev => {
+  const f = ev.target.files[0];
+  if (!f) return;
+  const fr = new FileReader();
+  fr.onload = () => {
+    let v;
+    try { v = JSON.parse(fr.result); } catch (e) { alert('Arquivo inválido.'); return; }
+    if (!v || !v.t) { alert('Este arquivo não tem edições do guia.'); return; }
+    const ids = Object.keys(v.t);
+    if (!confirm(`Importar as alterações de ${ids.length} terapeuta(s)? ` +
+      `As suas alterações nessas mesmas seções serão substituídas.`)) return;
+    ids.forEach(k => EDICOES.t[k] = v.t[k]);
+    salvar(true);
+    location.reload();
+  };
+  fr.readAsText(f);
+  ev.target.value = '';
+});
+
+/* ==========================================================  interface = */
+function alternarApresentacao(forcar) {
+  const on = forcar === undefined
+    ? document.body.classList.toggle('apresentacao')
+    : (document.body.classList.toggle('apresentacao', forcar), forcar);
+  const b = document.getElementById('btn-apres');
+  b.setAttribute('aria-pressed', on);
+  b.textContent = on ? 'Modo apresentação: ligado' : 'Modo apresentação';
+  if (on && document.body.classList.contains('editando')) modoEdicao(false);
+}
+function alternarTema() {
+  const atual = document.documentElement.getAttribute('data-theme');
+  const escuro = atual ? atual === 'dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', escuro ? 'light' : 'dark');
+}
+
+document.getElementById('btn-apres').addEventListener('click', () => alternarApresentacao());
+document.getElementById('btn-editar').addEventListener('click', () =>
+  modoEdicao(!document.body.classList.contains('editando')));
+
+const menu = document.getElementById('menu-arquivo');
+document.getElementById('btn-arquivo').addEventListener('click', e => {
+  e.stopPropagation(); menu.classList.toggle('aberto');
+});
+document.addEventListener('click', e => {
+  if (!menu.contains(e.target)) menu.classList.remove('aberto');
+});
+menu.querySelectorAll('[data-acao]').forEach(b => b.addEventListener('click', () => {
+  menu.classList.remove('aberto');
+  const a = b.dataset.acao;
+  if (a === 'salvar-html') salvarHtml();
+  if (a === 'exportar-json') exportarJson();
+  if (a === 'importar-json') document.getElementById('arquivo-json').click();
+  if (a === 'imprimir') window.print();
+  if (a === 'tema') alternarTema();
+  if (a === 'descartar') {
+    if (!confirm('Descartar TODAS as suas edições e voltar ao texto original de todas as ' +
+      'seções? Isso não pode ser desfeito — se quiser guardá-las, cancele e use ' +
+      '"Salvar cópia" antes.')) return;
+    EDICOES = VAZIO();
+    try { localStorage.removeItem(CHAVE); } catch (e) {}
+    location.reload();
+  }
+}));
+
+/* aviso de origem das edições */
+(function avisoOrigem() {
+  const el = document.getElementById('fonte-edicoes');
+  const n = Object.keys(EDICOES.t).length;
+  if (!n) return;
+  const quando = EDICOES.meta.atualizado
+    ? new Date(EDICOES.meta.atualizado).toLocaleString('pt-BR',
+        {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'})
+    : 'data desconhecida';
+  const fonte = origemEdicoes === 'arquivo' ? 'que vieram dentro deste arquivo'
+    : 'salvas neste navegador';
+  el.innerHTML = `<span><strong>${n} ${n === 1 ? 'seção editada' : 'seções editadas'}</strong> — ` +
+    `alterações ${fonte}, de ${quando}.</span>` +
+    (window.__edicoesArquivo
+      ? '<button class="btn-mini" id="usar-arquivo">usar a versão que veio no arquivo</button>' : '');
+  el.style.display = 'flex';
+  const b = document.getElementById('usar-arquivo');
+  if (b) b.addEventListener('click', () => {
+    if (!confirm('Substituir suas edições locais pelas que vieram no arquivo?')) return;
+    EDICOES = window.__edicoesArquivo; salvar(true); location.reload();
+  });
+})();
+
+atualizarNav();
+if (Object.keys(EDICOES.t).length) status('edições carregadas');
+
+/* se o navegador não deixar salvar (acontece em algumas configurações ao abrir o
+   arquivo direto do disco), avisa antes de fechar com trabalho não exportado */
+let semArmazenamento = false;
+try { localStorage.setItem(CHAVE + '-teste', '1'); localStorage.removeItem(CHAVE + '-teste'); }
+catch (e) {
+  semArmazenamento = true;
+  status('este navegador não guarda as edições — salve uma cópia antes de fechar', true);
+}
+window.addEventListener('beforeunload', ev => {
+  if (semArmazenamento && Object.keys(EDICOES.t).length) { ev.preventDefault(); ev.returnValue = ''; }
+});
+
+const tip = document.getElementById('tip');
+document.addEventListener('mouseover', e => {
+  const alvo = e.target.closest('[data-tip]');
+  if (!alvo) return;
+  tip.textContent = alvo.dataset.tip;
+  tip.style.opacity = '1';
+});
+document.addEventListener('mousemove', e => {
+  if (tip.style.opacity !== '1') return;
+  const x = Math.min(e.clientX + 14, window.innerWidth - 236);
+  tip.style.left = x + 'px';
+  tip.style.top = (e.clientY - 44) + 'px';
+});
+document.addEventListener('mouseout', e => {
+  if (e.target.closest('[data-tip]')) tip.style.opacity = '0';
+});
+</script>
+</body>
+</html>
